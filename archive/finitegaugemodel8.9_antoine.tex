@@ -1,0 +1,1318 @@
+%============================================================================%
+% Antoine Gé́ré (gere@dima.unige.it)
+% Tajron Juric (tjuric@irb.hr)
+% Jean-Christophe Wallet (jean-christophe.wallet@th.u-psud.fr)
+%============================================================================%
+
+\documentclass[a4paper,11pt,twoside]{article}
+
+\pdfoutput=1
+
+\makeatletter
+
+%-- PACKAGES ----------------------------------------------------------------%
+
+\usepackage{amsmath,amssymb}
+
+\usepackage[english]{babel}
+
+\usepackage{cancel}
+\usepackage{color}
+
+\usepackage{graphicx}
+\usepackage{geometry}
+
+\usepackage{hyperref}
+
+\usepackage[amsmath,hyperref,thmmarks]{ntheorem}
+
+\usepackage{url}
+
+%-- STYLING -----------------------------------------------------------------%
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks[1]
+\linespread{1.02}
+
+\geometry{
+tmargin=3truecm,
+bmargin=3truecm,
+rmargin=3truecm,
+lmargin=3truecm,
+verbose=true,
+}
+
+%-- COMMANDS ----------------------------------------------------------------%
+
+\newcommand{\parg}{[\! [ }
+\newcommand{\pard}{]\! ]}
+\newcommand{\lrtimes}{\super{\ltimes}{\rtimes}}
+\newcommand\caA{{\mathcal A}}
+\newcommand\bbbone{\mathbb{I}}
+\newcommand\caB{{\mathcal B}}
+\newcommand\caG{{\mathcal G}}
+\newcommand{\eqn}[1]{(\ref{#1})}
+\newcommand\dlde{ {\cal{D}}_{L^2} }
+\newcommand\AD{{\mathcal A_{\mathcal D}}}
+\newcommand\caM{{\mathcal M_\theta}}
+\newcommand\caS{{\mathcal S}}
+\newcommand\caU{{\mathcal U}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\hd}{\hat{\mathrm{d}}}
+\newcommand\caZ{{\mathcal Z}}
+\newcommand\wx{{\widetilde x}}
+\newcommand\gR{{\mathbb R}}
+\newcommand\gK{{\mathbb K}}
+\newcommand\gN{{\mathbb N}}
+\newcommand\gZ{{\mathbb Z}}
+\newcommand\Omr{{\underline\Omega_\varepsilon}}
+\newcommand\algzero{{\mathsf 0}}
+\newcommand\algA{{\mathbf A}}
+\newcommand\algrA{{\mathbf A^\bullet}}
+\newcommand\algB{{\mathbf B}}
+\newcommand\algrB{{\mathbf B^\bullet}}
+\newcommand\modM{{\boldsymbol M}}
+\newcommand\modrM{{\boldsymbol M^\bullet}}
+\newcommand\kg{{\mathfrak g}}
+\newcommand\hR{{F}}
+\newcommand\DOM{\textup{Dom}}
+\newcommand\SPEC{\textup{Sp}}
+\newcommand\adrep{\textup{ad}}
+\newcommand\der{{\text{\textup{Der}}}}
+\newcommand\uq{{{\cal{U}}_q(su(2))}}
+\newcommand\kX{{X}}
+\newcommand\kY{{ Y}}
+\newcommand\bbone{{ \mathbb{I}}}
+\newcommand\del{{\partial}}
+\newcommand\delbar{{{\bar{\partial}}}}
+\newcommand\kS{{\mathfrak S}}
+\newcommand\eps{{\varepsilon}}
+\newcommand\ad{{\text{\textup{ad}}}}
+\newcommand\nog{{\text{\textup{ng}}}}
+\newcommand\gr{{\text{\textup{gr}}}}
+\newcommand\inv{{\text{\textup{inv}}}}
+\newcommand{\grast}{\bullet}
+\newcommand\fois{\mathord{\cdot}}
+\DeclareMathOperator{\tr}{Tr} 
+\DeclareMathOperator{\Hom}{\mathsf{Hom}}
+\DeclareMathOperator{\Aut}{\mathsf{Aut}}
+\newcommand\Der{{\text{\textup{Der}}}}
+\newcommand\Int{{\text{\textup{Int}}}}
+\newcommand\out{{\text{\textup{Out}}}}
+\newcommand\Out{{\text{\textup{Out}}}}
+\newcommand\dd{{\text{\textup{d}}}}
+\newcommand\invar{{\text{\textup{inv}}}}
+\newcommand\ham{{\text{Ham}}}
+\newcommand{\omi}[1]{\buildrel { \buildrel{#1}\over{\vee} } \over .}
+\newcommand{\cg}[6]{\left(\begin{array}{cc|c} #1 & #3 & #5 \\ #2 & #4 & #6 \end{array} \right)}
+\newcommand{\labitem}[2]{\def\@itemlabel{\textbf{#1}}\item\def\@currentlabel{#1}\label{#2}}
+\newcommand{\arxiv}[3]{\href{#3}{\texttt{arXiv:#1 [#2]}}}
+
+\def\gC{{\mathbb C}}
+\def\ksu{{\mathfrak{su}}}
+\def\gR{{\mathbb R}}
+\def\ksl{{\mathfrak{sl}}}
+\def\ksu{{\mathfrak{su}}}
+\def\exter{{\textstyle\bigwedge}}
+
+%-- THEOREM -----------------------------------------------------------------%
+
+\theoremsymbol{}
+\theorembodyfont{\slshape}
+\theoremheaderfont{\normalfont\bfseries}
+\theoremseparator{}
+\newtheorem{Theorem}{Theorem}[section]
+\newtheorem{theorem}[Theorem]{Theorem}
+\newtheorem{Proposition}[Theorem]{Proposition}
+\newtheorem{proposition}[Theorem]{Proposition}
+\newtheorem{Lemma}[Theorem]{Lemma}
+\newtheorem{lemma}[Theorem]{Lemma}
+\newtheorem{Corollary}[Theorem]{Corollary}
+\newtheorem{corollary}[Theorem]{Corollary}
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{\blacklozenge}}
+\newtheorem{Example}[Theorem]{Example}
+\newtheorem{example}[Theorem]{Example}
+\newtheorem{Remark}[Theorem]{Remark}
+\newtheorem{remark}[Theorem]{Remark}
+\newtheorem{Definition}[Theorem]{Definition}
+\newtheorem{definition}[Theorem]{Definition}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\scshape}
+\theorembodyfont{\normalfont}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{Proof}{Proof}
+\newtheorem{proof}{Proof}
+\qedsymbol{\ensuremath{_\blacksquare}}
+\theoremclass{LaTeX}
+
+%-- MAKETITLE ---------------------------------------------------------------%
+
+\newcounter{and}
+\newcommand{\institute}[1]{\newcommand{\@institute}{#1}}
+
+\renewcommand{\maketitle}{
+%
+\vspace*{0.5\baselineskip}
+%
+{% title
+\center\LARGE\noindent\@title\par
+}%
+%
+\vspace{1.5\baselineskip}
+%
+{% author
+\center\normalsize\noindent\ignorespaces\@author\par
+}%
+%
+\vspace{0.5\baselineskip}
+%
+{% institute
+\center\normalsize\ignorespaces\@institute\par
+}%
+%
+\vspace{2\baselineskip}
+%
+}%
+
+%-- HYPERREF ----------------------------------------------------------------%
+
+\definecolor{hypercolor}{rgb}{0.1,0.2,0.6}
+
+\hypersetup{     
+unicode=false,      
+pdftoolbar=true,    
+pdfmenubar=true,    
+pdffitwindow=true,  
+pdfstartview={FitH},
+pdftitle={Draft},    
+pdfauthor={Antoine G\'er\'e, Tajron Juri\'c, Jean-Christophe Wallet},     
+pdfsubject={Mathematical Physics},   
+pdfcreator={LaTeX},  
+pdfproducer={pdfTex},
+pdfkeywords={Noncommutative Field Theory},  
+pdfnewwindow=true,  
+colorlinks=true, 
+linkcolor=hypercolor, 
+urlcolor=hypercolor, 
+citecolor=hypercolor,
+filecolor=hypercolor,         
+}  
+
+%-- BIBLIOGRAPHY ------------------------------------------------------------%
+
+\renewenvironment{thebibliography}[1]{%
+\section*{References}%
+\frenchspacing\small%
+\begin{list}{[\arabic{enumi}]}%
+{%
+\usecounter{enumi}\parsep=2pt\topsep 0pt%
+\settowidth{\labelwidth}{[#1]}%
+\leftmargin=\labelwidth\advance\leftmargin\labelsep%
+\rightmargin=0pt\itemsep=1pt\sloppy%
+}%
+}{\end{list}}
+
+%============================================================================%
+\begin{document}
+%============================================================================%
+
+\title{Noncommutative gauge theories on $\mathbb{R}^3_\lambda$ \ : \\
+Finitude and solvability properties}
+
+\author{Antoine G\'er\'e$^a$, Tajron Juri\'c$^b$, Jean-Christophe Wallet$^c$}
+
+\institute{%
+%
+\textit{$^a$Dipartimento di Matematica, Universit\`a di Genova\\
+Via Dodecaneso, 35, I-16146 Genova, Italy}\\
+e-mail:\href{mailto:gere@dima.unige.it}{\texttt{gere@dima.unige.it}}\\[1ex]%
+%
+\textit{$^b$Ru\dj er Bo\v{s}kovi\'c Institute, Theoretical Physics Division\\
+Bijeni\v{c}ka c.54, HR-10002 Zagreb, Croatia}\\
+e-mail:\href{mailto:tjuric@irb.hr}{\texttt{tjuric@irb.hr}}\\[1ex]%
+%
+\textit{$^c$Laboratoire de Physique Th\'eorique, B\^at.\ 210\\
+CNRS and Universit\'e Paris-Sud 11,  91405 Orsay Cedex, France}\\
+e-mail:\href{mailto:jean-christophe.wallet@th.u-psud.fr}{\texttt{jean-christophe.wallet@th.u-psud.fr}}\\[1ex]%
+%
+}%
+
+\date{\today}
+
+\maketitle
+
+%----------------------------------------------------------------------------%
+
+\begin{abstract} 
+(blablabla)
+\end{abstract}
+
+%----------------------------------------------------------------------------%
+
+%\vspace*{6pt}\noindent\textbf{Keywords}: %
+%Noncommutative Geometry; noncommutative field theories; gauge theories; renormalisation.
+
+%----------------------------------------------------------------------------%
+
+\tableofcontents
+
+%----------------------------------------------------------------------------%
+
+\newpage
+
+\section{Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+%
+% Write an introduction.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+(blablabla)
+
+%----------------------------------------------------------------------------%
+
+\section{\texorpdfstring{Noncommutative gauge theories on $\mathbb{R}^3_\lambda$ as matrix models}{Matrix gauge models}} \label{section2}
+
+\subsection{\texorpdfstring{Basic properties of $\mathbb{R}^3_\lambda$}{R3l}}\label{subsection21}
+
+The algebra $\mathbb{R}^3_\lambda$ has been first introduced in \cite{Hammaa} and further considered in various works \cite{selene,vit-wal-12,gervitwal-13}. Besides, a characterisation of a natural basis has been given in \cite{vit-wal-12}. We refer to these references for more details. Here{\footnote{To simplify the notations, the associative $\star$-product for $\mathbb{R}^3_\lambda$ is understood everywhere in any product of elements of the algebra. Besides, summation over repeated indices is understood everywhere, unless explicitely stated.}}, it will be convenient to view $\mathbb{R}^3_\lambda$ as \cite{vit-wal-12,gervitwal-13}%
+%
+\begin{equation}
+\mathbb{R}^3_\lambda=\mathbb{C}\left[x_1,x_2,x_3,x_0\right]/{\mathcal{I}}[{\mathcal{R}}_1,{\cal{R}}_2] \ , \label{defining} 
+\end{equation}
+%
+where $\mathbb{C}\left[x_1,x_2,x_3,x_0\right]$ is the free algebra generated by the 4 (hermitean) elements (coordinates) $\left\{x_{\alpha=1,2,3},\ x_0\right\}$ and ${\mathcal{I}}\left[{\mathcal{R}}_1,{\cal{R}}_2\right]$ is the two-sided ideal generated by the relations%
+%
+\begin{equation}
+{\mathcal{R}}_1: \ [x_\alpha,x_\beta] = i \lambda \varepsilon_{\alpha\beta\gamma} x_\gamma \ , \quad
+{\mathcal{R}}_2: \ x_0^2 + \lambda x_0 = \sum_{\alpha=1}^3 x_\alpha^2 \ , \label{relat1}
+\end{equation}
+%
+for all $\alpha,\beta,\gamma \in \{1,2,3\}$ and $\lambda\ne0$. $\mathbb{R}^3_\lambda$ is a unital $*$-algebra, with complex conjugation as involution and center ${\cal{Z}}(\mathbb{R}^3_\lambda)$ generated by $x_0$ and satisfying the following strict inclusion $\mathbb{R}^3_\lambda\supsetneq U(\mathfrak{su}(2))$, where $U(\mathfrak{su}(2))$ is the universal envelopping algebra of the Lie algebra ${\mathfrak{su}}(2)$. For alternative (equivalent) presentations see \cite{selene, vit-wal-12, gervitwal-13}.\par%
+%
+As shown in \cite{vit-wal-12}, any element $\phi\in\mathbb{R}^3_\lambda$ has the following blockwise expansion%
+%
+\begin{equation}
+\phi = \sum_{j\in\frac{\mathbb{N}}{2}} \ \sum_{-j\le m,n\in\mathbb{N}\le j} \phi^j_{mn} \ v^j_{mn} \ , \label{nat-fourier}
+\end{equation}
+%
+where $\phi^j_{mn}\in\mathbb{C}$, and the family $\left\{v^j_{mn} \ , \ j\in\frac{\mathbb{N}}{2} \ ,\ -j\le m,n\le j \right\}$ is the natural orthogonal basis of $\mathbb{R}^3_\lambda$ introduced in \cite{vit-wal-12}, stemming from the direct sum decomposition%
+%
+\begin{equation*}
+\mathbb{R}^3_\lambda = \bigoplus_{j\in\frac{\mathbb{N}}{2}} \ \mathbb{M}_{2j+1}(\mathbb{C}) \ . 
+\end{equation*}
+%
+For fixed $j$, the corresponding subfamily is simply related to the canonical basis of the matrix algebra $\mathbb{M}_{2j+1}(\mathbb{C})$. The following fusion relation and conjugation hold true%
+%
+\begin{equation}
+v^{j_1}_{mn} v^{j_2}_{qp} = \delta^{j_1j_2} \delta_{nq} \ v^{j_1}_{mp} \ , \ \ (v^j_{mn})^\dag=v^j_{nm} \ , \ \ 
+\forall j\in\frac{\mathbb{N}}{2} \ , \ -j\le m,n,q,p\le j \ . \label{fusion}
+\end{equation}
+%
+The orthogonality among the $v^j_{mn}$'s is taken with respect to the usual scalar product $\langle a,b\rangle:=\tr(a^\dag b)$, for any $a,b\in\mathbb{R}^3_\lambda$, where the trace functional $\tr$ can be defined \cite{gervitwal-13} for any $\Phi,\Psi\in\mathbb{R}^3_\lambda$ as%
+%
+\begin{equation*}
+\tr(\Phi\Psi) := 8 \pi \lambda^3 \sum_{j\in\frac{\mathbb{N}}{2}} w(j) \mbox{ tr}_j(\Phi^j\Psi^j)
+\end{equation*}
+%
+with $w(j) := j+1$, $\mbox{ tr}_j$ denotes the canonical trace of $\mathbb{M}_{2j+1}(\mathbb{C})$, and $\Phi^j$ (resp. $\Psi^j$) an element of $\mathbb{M}_{2j+1}(\mathbb{C})$ is simply defined from the expansion \eqref{nat-fourier} of $\Phi$ by the $(2j+1)\times(2j+1)$ matrix $\Phi^j:=(\phi^j_{mn})_{-j\le m,n\le j}$ (resp. $\Psi^j:= (\psi^j_{qp})_{-j\le q,p\le j}$). Therefore we have%
+%
+\begin{equation}
+\tr(\Phi\Psi)  = 8 \pi \lambda^3 \sum_{j\in\frac{\mathbb{N}}{2}} w(j) \left( \sum_{-j\le m,n\le j}\phi^j_{mn}\psi^j_{nm}\right) \ . \label{traceb} 
+\end{equation}
+%
+From this, it follows%
+%
+\begin{equation}
+\mbox{tr}_j(v^j_{mn}) = \delta_{mn} \ , \ \
+\langle v^{j_1}_{mn} , v^{j_2}_{pq} \rangle = 8 \pi \lambda^3 \sum_{j_1\in\frac{\mathbb{N}}{2}} w(j_1) \ \delta^{j_1j_2} \delta_{mp} \delta_{nq} \ . \label{ortho-normaliz}
+\end{equation}
+%
+Recall that this definition for the trace reproduces the expected behaviour{\footnote{For instance, observe that one easily obtains from \eqref{traceb} the expected volume of a sphere of radius $\lambda N$ with $\Phi^j=\Psi^j=\bbone_j$ and summing up to $j=\frac{N}{2}$. Namely, one obtains $8\pi\lambda^3\overset{N}{\underset{k=0}{\sum}}\left(\frac{k}{2}\right)(k+1)\simeq\frac43\pi\left(\lambda N\right)^3$.}} of the usual integral on $\mathbb{R}^3$ once the (formal) commutative limit is applied \cite{gervitwal-13}. For a general discussion on this point based on a noncommutative generalisation of the Kustaanheimo-Stiefel map \cite{ksmap}, see \cite{pv-ksmap}. \par%
+%
+We now define $x_\pm := x_1\pm i x_2$. Other useful relations \cite{vit-wal-12} are%
+%
+\begin{eqnarray}
+x_+ \ v^j_{mn} = \lambda \ \mathcal{F}(j,m) \ v^j_{m+1, n}  
+&& v^j_{mn} \ x_+ = \lambda \ \mathcal{F}(j,-n) \ v^j_{m, n -1} \nonumber \\
+x_- \ v^j_{mn} = \lambda \ \mathcal{F}(j,-m) \ v^j_{m-1,n}  
+&& v^j_{mn} \ x_- = \lambda \ \mathcal{F}(j,n) \ v^j_{m,n +1} \nonumber \\
+x_3 \ v^j_{mn} = \lambda \ m \ v^j_{mn}
+&& v^j_{mn} \ x_3 = \lambda \ n \ v^j_{mn} \nonumber \\
+x_0 \ v^j_{mn} = \lambda \ j \ v^j_{mn}
+&& v^j_{mn} \ x_0 = \lambda \ j \ v^j_{mn} \ , \label{x0-commut}
+\end{eqnarray}
+%
+where%
+%
+\begin{equation}
+\mathcal{F}(j,m):=\sqrt{(j+m+1)(j-m)} \ . \label{fjm}
+\end{equation}
+
+%----------------------------------------------------------------------------%
+
+\subsection{\texorpdfstring{Differential calculus on $\mathbb{R}^3_\lambda$ and gauge theory models.}{Family of gauge theories}} \label{subsection22}
+
+The construction of noncommutative gauge models can be conveniently achieved by using the general framework of the noncommutative differential calculus based on the derivations of an algebra which has been introduced a long ago \cite{mdv88-99}. Mathematical details and related applications to NCFT can be found in \cite{cgmw-20}. In the present paper, we consider as in \cite{gervitwal-13} the differential calculus generated by the Lie algebra of real inner derivations of $\mathbb{R}^3_\lambda$%
+%
+\begin{equation}
+\mathcal{G} := \left\{D_\alpha \cdot := Ad_{\theta_\alpha} \cdot = i \left[\theta_\alpha, \cdot\right]\right\} \ ,  \ \ \theta_\alpha := \frac{x_\alpha}{\lambda^2} \ , \ \ \forall \alpha = 1,2,3 \ , \label{inv-form-conn}
+\end{equation}
+%
+where the inner derivation $D_\alpha$ satisfy the following commutation relation%
+%
+\begin{equation}
+\left[D_\alpha,D_\beta\right] = -\frac{1}{\lambda} \epsilon_{\alpha\beta\gamma} D_\gamma \ , \ \ \forall \alpha,\beta,\gamma = 1,2,3 \ . \label{Der}
+\end{equation}
+%
+The corresponding $\mathbb{N}$-graded differential algebra is $\Omega_\mathcal{G}^\bullet = \oplus_{n\in\mathbb{N}} \Omega^n_\mathcal{G}$, that is the (``infinite'') direct sum of $\Omega^n_\mathcal{G}$, the spaces of ($\mathcal{Z}(\mathbb{R}^3_\lambda)$-linear) multilinear antisymmetric maps $\mathcal{G}^n\to\mathbb{R}^3_\lambda$, $n \in \mathbb{N}$. Here, $\mathcal{Z}(\mathbb{R}^3_\lambda)$ denotes as usual the center of $\mathbb{R}^3_\lambda$. The general definition for the product of forms and nilpotent exterior differential $d:\Omega^n_\mathcal{G}\to\Omega^{n+1}_\mathcal{G}$, that will not be explicitely needed in the sequel since most of the analysis will be carried out using ``components'' of forms, can be found e.g in \cite{cgmw-20} (see for instance Prop. (2.4) of ref. \cite{cgmw-20}). \par%
+%
+Let $\mathbb{M}$ denotes a right-module over $\mathbb{R}^3_\lambda$. Recall that a connection on $\mathbb{M}$ can be defined as a linear map $\nabla:\mathcal{G}\times\mathbb{M}\to\mathbb{M}$ with%
+%
+\begin{equation*}
+\nabla_X(ma) = \nabla_X(m)a + mXa \ , \ \ \nabla_{zX}(a)=z\nabla_X(a) \ , \ \ \nabla_{X+Y}(a)=\nabla_X(a)+\nabla_Y(a) \ ,
+\end{equation*}
+%
+for any $a\in\mathbb{R}^3_\lambda$, any $m\in\mathbb{M}$, $z\in \mathcal{Z}(\mathbb{R}^3_\lambda)$ and any $X,Y\in\mathcal{G}$.\par%
+%
+As we are interested by noncommutative versions of $U(1)$ gauge theories, we assume from now on $\mathbb{M} = \mathbb{C}\otimes\mathbb{R}^3_\lambda$ which can be viewed as a noncommutative analog of the complex line bundle relevant for abelian ($U(1)$) commutative gauge theories, as also assumed in \cite{gervitwal-13}. We further restrict ourself to hermitean connections{\footnote{Given a hermitean structure, says $h:\mathbb{M}\times\mathbb{M}\to\mathbb{R}^3_\lambda$, $\nabla$ is hermitean if $Xh(m_1,m_2)=h(\nabla_X(m_1),m_2)+h(m_1,\nabla_X(m_2))$, for any $X\in{\cal{G}}$, $m_1,m_2\in\mathbb{M}$.}} for the canonical hermitean structure given by $h(a_1,a_2)=a_1^\dag a_2$, $a_1,a_2 \in \mathbb{R}^3_\lambda$. A mere application of the above definition yields%
+%
+\begin{eqnarray}
+\nabla_{D_\alpha}(a) &:=& \nabla_\alpha(a) = D_\alpha a + A_\alpha a \ , \nonumber \\
+A_\alpha &:=& \nabla_\alpha(\bbone) \ , \quad \mbox{ with } \ A_\alpha^\dag = - A_\alpha \ , \label{connection}
+\end{eqnarray}
+%
+for $a\in\mathbb{R}^3_\lambda$ and $\alpha = 1,2,3$. The definition of the curvature 
+\begin{equation*}
+F(X,Y) := \left[\nabla_X,\nabla_Y\right] - \nabla_{\left[X,Y\right]} \ , \quad \forall X,Y \in \mathcal{G} \ , 
+\end{equation*}
+%
+yields%
+%
+\begin{equation}
+F(D_\alpha,D_\beta) := F_{\alpha\beta} = \left[\nabla_\alpha,\nabla_\beta\right] - \nabla_{\left[D_\alpha,D_\beta\right]} = D_\alpha A_\beta - D_\beta A_\alpha + \left[A_\alpha,A_\beta\right] + \frac{1}{\lambda} \epsilon_{\alpha\beta\gamma} A_\gamma \ . \label{curv1}
+\end{equation}
+%
+The group of gauge transformations, defined as the group of automorphism of the module compatible with both hermitean and righ-module structures, is easily found to be the group of unitary elements of $\mathbb{R}^3_\lambda$, $\mathcal{U}(\mathbb{R}^3_\lambda)$, with left action of $\mathbb{R}^3_\lambda$. For any $g\in\mathcal{U}(\mathbb{R}^3_\lambda)$ and $\phi\in\mathbb{R}^3_\lambda$, one has $g^\dag g=gg^\dag=\bbone$, $\phi^g=g\phi$. From the definition of the gauge transformations of the connection given by $\nabla_\alpha^g=g^\dag\nabla_\alpha\circ g$, for any $g\in\mathcal{U}(\mathbb{R}^3_\lambda)$, one infers%
+%
+\begin{equation}
+A_\alpha^g = g^\dag A_\alpha \ g + g^\dag D_\alpha \ g \ , \ \ \mbox{and } \quad F^g_{\alpha\beta} = g^\dag F_{\alpha\beta} \ g \ .
+\end{equation}
+%
+The existence of a canonical gauge invariant connection, denoted hereafter by $\nabla^{inv}$, stems from the existence of inner derivations in the Lie algebra of derivations that generates the differential calculus. See \cite{mdv88-99} for a general analysis. In the present case, one finds
+%
+\begin{equation} 
+\nabla^{inv}_\alpha(a) = D_\alpha a - i \theta_\alpha a = - i a \theta_\alpha \ , \quad \forall a \in \mathbb{R}^3_\lambda \ , \label{invar-connect}
+\end{equation}
+%
+with curvature $F^{inv}_{\alpha\beta}=0$. A natural gauge covariant tensor 1-form is then obtained by forming the difference between $\nabla^{inv}_\alpha$ and any arbitrary connection. The corresponding components, sometimes called covariant coordinates, are given by%
+%
+\begin{equation}
+\mathcal{A}_\alpha := \nabla_\alpha - \nabla^{inv}_\alpha = A_\alpha + i \theta_\alpha \ , \quad \forall i=1,2,3 \ , \label{tens-form}
+\end{equation}
+%
+and one has $\mathcal{A}_\alpha^\dag = - \mathcal{A}_\alpha$, $\alpha=1,2,3$ ($A_\alpha^\dag=-A_\alpha$). By using \eqref{curv1}, one obtains%
+%
+\begin{equation} 
+F_{\alpha\beta} = \left[\mathcal{A}_\alpha,\mathcal{A}_\beta\right] + \frac{1}{\lambda} \epsilon_{\alpha\beta\gamma} \mathcal{A}_\gamma \ . \label{curv2}
+\end{equation}
+%
+One easily verifies that for any $a\in\mathbb{R}^3_\lambda$, and $g\in\mathcal{U}(\mathbb{R}^3_\lambda)$, the following gauge transformations hold true%
+%
+\begin{equation}
+(\nabla^{inv}_\alpha(a))^g = \nabla^{inv}_\alpha(a) \ , \quad \mathcal{A}^g_\alpha = g^\dag \mathcal{A}_\alpha \ g \ , \quad \forall \alpha=1,2,3 \ . \label{conection-invariace}
+\end{equation}
+%
+As a remark, note that the $\theta_\alpha$'s are related to the real invariant 1-form $\Theta$ introduced e.g in \cite{mdv88-99}. Indeed, define $\Theta\in\Omega^1_\mathcal{G}$ by%
+%
+\begin{equation*}
+\Theta \in \Omega^1_\mathcal{G} \ : \ \Theta(D_\alpha) = \Theta(Ad_{\theta_\alpha}) = \theta_\alpha \ .
+\end{equation*}
+%
+One easily check that%
+%
+\begin{equation*}
+d(-i\Theta)+(-i\Theta)^2=0 \ ,
+\end{equation*}
+%
+reflecting $F^{inv}_{\alpha\beta}=0$ while $\omega:=d\Theta\in\Omega^2_\mathcal{G}$ can be viewed as the natural symplectic form on the algebra $\mathbb{R}^3_\lambda$ in the setting of \cite{mdv88-99} with $\ham(a)=Ad_{ia}$ for any $a\in\mathbb{R}^3_\theta$ as the noncommutative analog of Hamiltonian vector field and $\left\{a,b\right\}:=\omega\left(\ham(a),\ham(b)\right)=-i\left[a,b\right]$ the related (real) Poisson bracket {\footnote{Noncommutative version of a symplectic form is defined as a real closed 2-form $\omega$ such that for any element $a$ in the algebra, there exists a derivation $\ham(a)$ (the analog of Hamiltonian vector field) verifying $\omega(X,\ham(a))=X(a)$ for any derivation $X$.}}.\par
+
+\subsection{The classical actions}
+
+Families of gauge-invariant functional (classical) actions can be easily obtained from the trace of any gauge-covariant polynomial functional in the covariant coordinates $\mathcal{A}_\alpha$, namely $S_{inv}(\mathcal{A}_\alpha)=\tr\left(P(\mathcal{A}_\alpha)\right)$. Here, we will assume that the relevant field variable is $\mathcal{A}_\alpha$, akin to a matrix model formulation of gauge theories on $\mathbb{R}^3_\lambda$, thus proceeding in the spirit of \cite{MVW13}. Natural requirement for the gauge-invariant functional are%
+%
+\begin{description}
+\labitem{(i)}{(i)} $P(\mathcal{A}_\alpha)$ is at most quartic in $\mathcal{A}_\alpha$,
+\labitem{(ii)}{(ii)} $P(\mathcal{A}_\alpha)$ does not involve linear term in $\mathcal{A}_\alpha$ (not tadpole at the classical order),
+\labitem{(iii)}{(iii)} the kinetic operator is positive (upon gauge-fixing).
+\end{description}
+%
+Set from now on $x^2 := x_\alpha x_\alpha$. We first observe that gauge theories on $\mathbb{R}^3_\lambda$ can accomodate a gauge-invariant harmonic term $\sim\tr(x^2\mathcal{A}_\alpha \mathcal{A}_\alpha)$. This property stems from the gauge-invariance of the canonical 1-form connection defined by $i\theta_\alpha$, $\alpha=1,2,3$ combined with the relation $\mathcal{R}_2$ \eqref{defining} which implies that the harmonic operator term $\sim x^2$ belongs to the center of $\mathbb{R}^3_\lambda$. Indeed, \eqref{inv-form-conn} implies%
+%
+\begin{equation}
+(-i\theta_\alpha)(-i\theta_\alpha) = -\frac{1}{\lambda^4}x^2 = -\frac{1}{\lambda^4}(x_0^2+\lambda x_0) \ , \label{harmonic-operator}
+\end{equation}
+%
+where the last equality stems from $\mathcal{R}_2$ \eqref{defining} while the LHS of \eqref{harmonic-operator} is obviously gauge-invariant since \eqref{conection-invariace} holds true. Hence, the gauge-invariant object $(-i\theta_\alpha)^2$ belongs to the center of $\mathbb{R}^3_\lambda$. Therefore, by using the cyclicity of the trace, one can write%
+%
+\begin{equation}
+\tr\left( (-i\theta_\alpha)^g (-i\theta_\alpha)^g \mathcal{A}^g_\alpha \mathcal{A}^g_\alpha \right) = 
+\tr\left( g (-i\theta_\alpha)^2 g^\dag \mathcal{A}_\alpha \mathcal{A}_\alpha \right) = 
+\tr\left( (-i\theta_\alpha)^2 \mathcal{A}_\alpha \mathcal{A}_\alpha \right) \ . 
+\label{harm-inv-dem}
+\end{equation}
+%
+Note that such a gauge-invariant harmonic term cannot be built in the case of gauge theories on the Moyal space $\mathbb{R}^4_\theta$ \cite{GWW} simply because, says $x_{\nu=1,2,3,4}^2$, while still related to a gauge invariant object (a canonical gauge-invariant connection still exists, see e.g \cite{cgmw-20}), does not belong to the center of $\mathbb{R}^4_\theta$. \par%
+%
+It is convenient to work with hermitean fields. Thus, we set from now on $\mathcal{A}_\alpha = i \Phi_\alpha$ so that $\Phi^\dag_\alpha = \Phi_\alpha$ for any $\alpha=1,2,3$. The above observation, combined with the requirements \ref{(i)} and \ref{(ii)} given above points towards the following general expression for a gauge-invariant action%
+%
+\begin{equation}
+S_{\kappa\eta}(\Phi) = \frac{1}{g^2} \tr\bigg( \kappa \Phi_\alpha \Phi_\beta \Phi_\beta \Phi_\alpha + \eta \Phi_\alpha \Phi_\beta \Phi_\alpha \Phi_\beta + i \zeta \epsilon_{\alpha\beta\gamma} \Phi_\alpha \Phi_\beta \Phi_\gamma + \left(M+\mu x^2\right) \Phi_\alpha \Phi_\alpha \bigg) \ , \label{class-action}
+\end{equation}
+%
+where the trace is still given by \eqref{traceb} and $g^2$, $\kappa$, $\eta$, $\zeta$, $M$ and $\mu$ are real parameters. The corresponding mass dimensions are $[\kappa]=[\eta]=0$, $[g^2]=[\zeta]=1$, $[M]=2$, $[\mu]=4$ so that the action \eqref{class-action} is dimensionless, assuming that the ``engineering'' dimension of the noncommutative space is the relevant dimension.\par%
+%
+We will mainly focus on sub-families involving positive actions obtained from \eqref{class-action}. For that purpose, it is first convenient to set%
+%
+\begin{equation}
+\kappa := 2(\Omega+1) \ , \ \ \mbox{and } \ \ \eta := 2(\Omega-1) \ , \label{redef-param}
+\end{equation}
+%
+where the real parameter $\Omega$ is dimensionless and analyze separately the cases when $\zeta=0$ and $\zeta\ne0$.\par%
+%
+Whenever $\zeta=0$, \eqref{class-action} combined with \eqref{redef-param} leads to%
+%
+\begin{equation}
+S_\Omega = \frac{1}{g^2} \tr\bigg(\left(F_{\alpha\beta} - \frac{i}{\lambda} \epsilon_{\alpha\beta\gamma} \Phi_\gamma\right)^\dag \left(F_{\alpha\beta} - \frac{i}{\lambda} \epsilon_{\alpha\beta\gamma} \Phi_\gamma\right) + \Omega\left\{\Phi_\alpha,\Phi_\beta\right\}^2 + \left(M+\mu x^2\right) \Phi_\alpha \Phi_\beta \bigg) \label{zeta=0}.
+\end{equation}
+%
+This gauge-invariant action is positive whenever $\Omega\ge0$ together with $M>0$ and $\mu>0$ which imply positivity of the quadratic term as it can be easily realized (see section \ref{section3}). Note that the second term is similar to the term that supplements the naive gauge action of the 4-d Moyal space $\mathbb{R}^4_\theta$ \cite{GWW, GW07}.\par%
+%
+When $\zeta\ne0$, the combination of \eqref{class-action} with \eqref{redef-param} yields%
+%
+\begin{equation}
+S_{\Omega\zeta}(\Phi) = \frac{1}{g^2} \tr\bigg(F^\dag_{\alpha\beta}F_{\alpha\beta} + \Omega\left\{\Phi_\alpha,\Phi_\beta\right\}^2 + i \zeta^\prime\epsilon_{\alpha\beta\gamma} \Phi_\alpha \Phi_\beta \Phi_\gamma + \left(M^\prime+\mu x^2\right) \Phi_\alpha \Phi_\alpha \bigg) \ , \label{canonic-action}
+\end{equation}
+%
+with%
+%
+\begin{equation}
+\zeta = \zeta^\prime+\frac{4}{\lambda} \ , \ \mbox{ and }  M=M^\prime+\frac{2}{\lambda^2} \ . \label{new-param}
+\end{equation}
+%
+Provided $\zeta=\frac{4}{\lambda}$, the positivity of \eqref{canonic-action} $S_{\Omega\zeta}$ can be achieved when $\Omega\ge0$ and $M>\frac{2}{\lambda^2}$, $\mu>0$. As a remark, notice that the 2 first terms in \eqref{canonic-action} are formally similar to those occuring in the so-called induced gauge theory on $\mathbb{R}^4_\theta$ \cite{GWW, GW07}.\par%
+%
+The equation of motion for the general family of gauge-invariant actions \eqref{class-action}, is given for any $\gamma=1,2,3$ by%
+%
+\begin{equation}
+\frac{\delta S_{\kappa\eta}}{\delta{\Phi}_\gamma}=0 \ \Longleftrightarrow \ 4 \left(\kappa+\eta\right) \ \Phi_\gamma \Phi_\alpha \Phi_\alpha + i \zeta \epsilon_{\alpha\beta\gamma} \Phi_\alpha \Phi_\beta + 2(M+\mu x^2) \Phi_\gamma = 0 \ . \label{eqn-motion}
+\end{equation}
+%
+The next step would be to classify all the solutions of \eqref{eqn-motion}, then select each of these solutions being actually a (at least local) minimum of $S_{\kappa\eta}$ thus defining a given background, expand $S_{\kappa\eta}$ around this minimum and fixe the background symmetry to obtain an action for a noncommutative field theory describing the quantum fluctuations around the background.\par%
+%
+In the section \ref{section3}, we will consider the simplest solution $\Phi_\alpha=0$ and show that one particular class of gauge theory pertaining to the families \eqref{zeta=0}, \eqref{canonic-action} yields after gauge-fixing to a finite theory at all orders in perturbation. This stems from the occurence of the gauge-invariant harmonic term in \eqref{class-action}. Notice that in the Moyal case only the term $\sim M$ is allowed by gauge invariance. We will come back to this point and examine more carefully the situation at the end of the paper.\par%
+
+%----------------------------------------------------------------------------%
+
+\section{A finite gauge theory model with harmonic term.}\label{section3}
+
+\subsection{Propagators and gauge-fixing.}\label{subsection31}
+
+We set%
+%
+\begin{equation}
+\Phi_\alpha = \sum_{j,m,n} (\phi_\alpha)^j_{mn} v^j_{mn} \ , \ \ \forall \alpha=1,2,3.
+\end{equation}
+%
+We consider the solution of the equation of motion \eqref{eqn-motion} $\Phi_\alpha=0$. The kinetic term of the corresponding action \eqref{zeta=0} $S_{\Omega\zeta=0}$ is given by%
+%
+\begin{eqnarray}
+S_{Kin}(\Phi) &=& \frac{1}{g^2} \tr\left( \Phi_\alpha \left(M+\mu x^2\right) \Phi_\alpha \right) \ , \label{skin} \\
+&=& \frac{8\pi\lambda^3}{g^2} \sum_{j,m,n} w(j) \left(M+\lambda^2\mu j(j+1)\right) |(\phi_\alpha)^j_{mn}|^2 \label{skin-explicit}
+\end{eqnarray}
+%
+($w(j)$ is still the weight intriduced in \eqref{traceb}) where in \eqref{skin} the kinetic operator, diagonal in the matrix base indices, is given by%
+%
+\begin{equation}
+G^{j_1j_2}_{mn;kl} = 8\pi\lambda^3 w(j_1) \ \left(M+\lambda^2\mu j_1(j_1+1)\right) \delta^{j_1j_2} \delta_{nk} \delta_{ml} \ , \label{kin-op1}
+\end{equation}
+%
+where we used \eqref{fusion}, \eqref{x0-commut} and \eqref{traceb}.\par%
+%
+In the rest of this subsection, we assume $M>0$, $\mu>0$ and $\Omega\ge0$, such that $S_{Kin}\ge0$. Under these assumptions $\Phi_\alpha=0$ is the absolute minimum of \eqref{zeta=0}.\par%
+%
+Let $L(a)$ denotes the left-multiplication operator by any element $a$ of $\mathbb{R}^3_\lambda$. Self-adjointness of the classical kinetic operator can be shown by using eqn.\eqref{kin-op1} to define the unbounded operator $G$ as%
+%
+\begin{equation}
+G:= M \bbone + \mu L(x^2) \label{kinet-harmonic},
+\end{equation}
+%
+an element of $\mathcal{L}(\mathcal{H})$, the space of linear operators on 
+\begin{equation*}
+\mathcal{H}=\text{span}\left\{v^j_{mn} \ , \ j\in\frac{\mathbb{N}}{2} \ , \ -j\le m,n\le j\right\} 
+\end{equation*}
+%
+with natural product $\langle a,b \rangle = \tr(a^\dag b)$ defined in \eqref{traceb}. Obviously, $G$ is symmetric. Using \eqref{x0-commut} and \eqref{nat-fourier}, one infers%
+%
+\begin{equation}
+x_0 = \lambda \ \sum_{j,m} \ j \ v^j_{mm} \ , \ \mbox{ and } \quad x^2 = \lambda^2 \ \sum_{j,m} \ j(j+1) \ v^j_{mm} \ ,
+\end{equation}
+%
+so that $L(x^2)$ is a sum of orthogonal projectors, hence self-adjoint operators, says $L(v^j_{mm}):\mathbb{R}^3_\lambda\to\mathbb{M}_{2j+1}(\mathbb{C})$. This stems from $v^j_{mm}v^j_{mm}=v^j_{mm}$ (see \eqref{fusion}) and $\mathbb{R}^3_\lambda=\oplus_{j\in\frac{\mathbb{N}}{2}}\mathbb{M}_{2j+1}(\mathbb{C})$ \cite{vit-wal-12}. Hence, the classical kinetic operator $G$ is self-adjoint and positive, with spectrum and corresponding eigenspaces given by%
+%
+\begin{eqnarray}
+&\text{spec}(G)=\left\{ \lambda_j = m + \lambda^2 \mu j(j+1) >0 , \ \forall j \in \frac{\mathbb{N}}{2} \right\} \ , \label{spect-G}& \\
+&\mathcal{V}_{j} = \text{span}\left\{ v^j_{mn} \ , \ \forall  j \in \frac{\mathbb{N}}{2} \ , \ -j\le m,n\le j \right\} \ . \label{eigensp-G}&
+\end{eqnarray}
+%
+As a remark, we note that $R_G(z)=(G-z\bbone)^{-1}$, $\forall z\notin\text{spec}(G)$, the resolvant operator of $G$ is compact {\footnote{Indeed, pick $z=0$. Then, one easily realizes from $\text{spec}(G)$ that the operator $R_G(0)$ has decaying spectrum at $j\to\infty$, still with finite degeneracy for the eigenvalues. Hence $R_G(0)$ is compact which extends to $R_G(z),\ z\notin\text{spec}(G)$ by making use of the resolvant equation.}}.\par%
+%
+The gauge-invariance of $S_\Omega$ \eqref{zeta=0} can be translated into invariance under a nilpotent BRST operation $\delta_0$ defined by the following structure equations \cite{MVW13}%
+%
+\begin{equation}
+\delta_0 \Phi_\alpha = i \left[C,\Phi_\alpha\right] \ , \ \ \delta_0C=iCC\label{brs}
+\end{equation}
+%
+where $C$ is the ghost field. Recall that $\delta_0$ acts as an antiderivation with respect to the grading given by (the sum of) the ghost number (and degree of forms), modulo 2. $C$ (resp. $\Phi_i$) has ghost number $+1$ (resp. $0$). Fixing the gauge symmetry can be conveniently done by using the gauge condition $\Phi_3=\theta_3$. This can be implemented into the action by enlarging \eqref{brs} with%
+%
+\begin{equation}
+\delta_0 {\bar{C}} = b \ , \ \ \delta_0b = 0 \label{contractible-brs}
+\end{equation}
+%
+where ${\bar{C}}$ and $b$ are respectively the antighost and the St\"uckelberg field (with respective ghost number $-1$ and $0$) and by adding to $S_\Omega$ a BRST invariant gauge-fixing term given by \eqref{zeta=0}%
+%
+\begin{equation}
+S_{\phi\pi}=\delta_0\tr\big({\bar{C}}(\Phi_3-\theta_3) \big)=\tr\big(b(\Phi_3-\theta_3)-i{\bar{C}}[C,\Phi_3]\big)\label{gauge-fix}.
+\end{equation}
+%
+Integrating over the St\"ueckelberg field $b$ yields the constraint $\Phi_3=\theta_3$ into \eqref{zeta=0}, while the ghost part can be easily seen to decouple{\footnote{Recall it amounts to consider an "on-shell" formulation for which nilpotency of the BRST operation (and corresponding BRST-invariance of the gauge-fixed action) is verified modulo the ghost equation of motion.}}. Define in obvious notations%
+%
+\begin{equation}
+K_\Omega := G + 8 \Omega L(\theta_3^2) \label{operator-K}.
+\end{equation}
+%
+The resulting gauge-fixed action can be written as%
+%
+\begin{equation}
+S^f_\Omega = S_2^{\Omega} + S_4^{\Omega} \ , \label{stot}
+\end{equation}
+with%
+\begin{eqnarray}
+S_2^{\Omega} &=& \frac{1}{g^2} \tr \left((\Phi_1,\Phi_2)
+\begin{pmatrix}
+Q_\Omega&0\\
+0&Q_\Omega
+\end{pmatrix} 
+\begin{pmatrix}
+\Phi_1\\
+\Phi_2
+\end{pmatrix} 
+\right) , \nonumber \\
+Q_\Omega &=& K_\Omega + 4 i (\Omega-1) L(\theta_3) D_3 \ , \label{squad1} \\[5pt]
+S_4^{\Omega} &=& \frac{4}{g^2} \tr \left( \Omega (\Phi_1^2 + \Phi_2^2)^2 + (\Omega-1)(\Phi_1\Phi_2\Phi_1\Phi_2 - \Phi_1^2\Phi_2^2) \right) . \label{squart}
+\end{eqnarray}
+%
+The gauge-fixed action \eqref{stot} is thus described by a rather simple NCFT with "flavor diagonal" kinetic term (see \eqref{squad1}) and quartic interaction terms. By further defining the complex fields%
+%
+\begin{equation}
+\Phi:=\frac{1}{2}(\Phi_1+i\Phi_2),\ \Phi^\dag:=\frac{1}{2}(\Phi_1-i\Phi_2),
+\end{equation}
+%
+the gauge-fixed action $S^f_\Omega$ can be expressed into the form%
+%
+\begin{equation}
+S^f_\Omega = \frac{2}{g^2} \tr\left( \Phi Q_\Omega \Phi^\dag + \Phi^\dag Q_\Omega \Phi \right) + \frac{16}{g^2} \tr\left( (\Omega+1) \Phi\Phi^\dag\Phi\Phi^\dag + (3\Omega-1) \Phi\Phi\Phi^\dag\Phi^\dag \right) .
+\label{quasilsz}
+\end{equation}
+%
+At this level, some comments are in order.
+\begin{itemize}
+%
+\item The action \eqref{quasilsz} bears some similarity with the (matrix model representation of) the action describing the family of complex LSZ models \cite{LSZ}.%
+%
+\item For $\Omega=1$, the kinetic operator in \eqref{quasilsz} simplifies while the interaction term takes a more symmetric form, reflecting the "global" $O(2)$ symmetry of the quartic potential in \eqref{squart}. Note that the theory for $\Omega\ne 1$ is not very different from the $\Omega=1$ case. We will find that the corresponding theory for both case is finite to all orders in perturbation.%
+%
+\item For $\Omega=1/3$, the quartic interaction potential depends only on $\Phi\Phi^\dag$, so that the action is formally similar to the action describing an exactly solvable LSZ-type model investigated in \cite{LSZ}. Only the respective kinetic operators are different. We will show that the partition function for $S^f_{\Omega=\frac{1}{3}}$ \eqref{quasilsz} can be explicitely computed as in \cite{LSZ} signaling that there is an exact formula.%
+%
+\end{itemize}
+%
+In the rest of this subsection, we will assume $\Omega=1$. The corresponding action is simply%
+%
+\begin{equation}
+S^f_{\Omega=1} = \frac{1}{g^2} \tr\left( (\Phi_1,\Phi_2)
+\begin{pmatrix}
+K_{\Omega=1}&0\\
+0&K_{\Omega=1}
+\end{pmatrix} 
+\begin{pmatrix}
+\Phi_1\\
+\Phi_2
+\end{pmatrix} 
+\right)
++ \frac{4}{g^2} \tr\left( (\Phi_1^2 + \Phi_2^2)^2 \right) . \label{critical-action}
+\end{equation}
+%
+The inversion of the gauge-fixed kinetic operator is easily achieved by first observing that the spectrum of the operator $K_{\Omega=1}\in{\cal{L}}({\cal{H}})$ \eqref{operator-K} and corresponding eigenspaces are simply given by%
+%
+\begin{eqnarray}
+&\text{spec}(K_{\Omega=1}) = \left\{ \rho_{j,p} = M + \mu \lambda^2 j(j+1) + \frac{8}{\lambda^2} p^2>0 \right\},\ \forall j \in \frac{\mathbb{N}}{2} , \ -j \le p \le j \ , \label{spec-K}& \\[2pt]
+&\mathcal{V}_{j,p} = \text{span}\left\{v^j_{pq} \ , \ \forall j \in \frac{\mathbb{N}}{2} \ , \ -j \le q \le j \right\} \ . \label{eigensp-K}&
+\end{eqnarray}
+%
+Self-adjointness of $K_{\Omega=1}$ still holds since it can be written as a sum of orthogonal projectors (observe $x_3^2 = \lambda^2 \sum_{jm} m^2 v^j_{mm}$) while positivity of $K_{\Omega=1}$ is obvious.\par%
+%
+For computational purpose, it is convenient to introduce the "matrix elements" of $K_{\Omega=1}$ under the form%
+%
+\begin{equation}
+\left(K_{\Omega=1}\right)^{j_1 j_2}_{mn;kl} := 8\pi\lambda^3 w(j_1) \left( M + \mu \lambda^2 j_1 (j_1+1) + \frac{4}{\lambda^2} (k^2+l^2) \right) \delta^{j_1j_2} \delta_{ml} \delta_{nk} \ . \label{matrix-K} 
+\end{equation}
+%
+Note that \eqref{matrix-K} verifies%
+%
+\begin{equation}
+\left(K_{\Omega=1}\right)^{j_1j_2}_{mn;kl} = \left(K_{\Omega=1}\right)^{j_1j_2}_{lk;nm} = \left(K_{\Omega=1}\right)^{j_1j_2}_{mn;lk} \label{sym-K}
+\end{equation}
+%
+reflecting reality of the functional action and the self-adjointness of $K$ (recall we use the natural Hilbert product $\langle a,b \rangle = \tr(a^\dag b)$).\par%
+%
+The inverse of \eqref{matrix-K} (i.e the propagator) $P^{j_1j_2}_{mn;kl}$ is then defined by%
+%
+\begin{equation}
+\sum_{j_2,k,l} \left(K_{\Omega=1}\right)^{j_1j_2}_{mn;lk} \ P^{j_2j_3}_{kl;rs} = \delta^{j_1j_3} \delta_{ms} \delta_{nr} \ , \ \ \sum_{j_2,n,m} P^{j_1j_2}_{rs;mn} \ \left(K_{\Omega=1}\right)^{j_2j_3}_{nm;kl} = \delta^{j_1j_3} \delta_{rl} \delta_{sk} \ , \label{propagator-def}
+\end{equation}
+%
+leading to%
+%
+\begin{equation}
+P^{j_1j_2}_{mn;kl} = \frac{1}{8\pi\lambda^3} \frac{1}{(j_1+1)\left(M+\lambda^2\mu j_1(j_1+1)+4\lambda^{-2}(k^2+l^2)\right)}\delta^{j_1j_2}\delta_{ml}\delta_{nk} \ .  \label{propagator}
+\end{equation}
+
+\subsection{Perturbative properties}\label{subsection32}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+%
+% Give the Feynman rules !
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We first compute the 2-point correlation function at the one-loop order. By introducing sources variables for the $\Phi_\beta$'s, namely $J_\beta := \underset{j,m,n}{\sum}(J_\beta)^j_{mn}v^j_{mn}$, for any $\beta=1,2$, standard computation yields the free part of the generating functional of the connected correlation functions $W_0(J)$ given (up to an unessential prefactor) by%
+%
+\begin{eqnarray}
+&& Z_0(K_{\Omega=1}) = e^{W_0(J)} := \int\mathcal{D}\Phi \ e^{-(S_2^{\Omega=1}(\Phi)+g^{-2}\tr(\Phi_\beta J_\beta))} 
+= N \ e^{\frac{1}{4} (\mathcal{J}_\beta)^{j_1}_{mn} P^{j_1j_2}_{mn;kl} (\mathcal{J}_\beta)^{j_2}_{kl}} \ , \nonumber \\
+&& \mbox{with } \ N = \int \mathcal{D}\Phi \ e^{-\frac{1}{g^2} \tr\left(\Phi_\beta K_{\Omega=1} \Phi_\beta \right)} := 1 \ , \quad \forall \beta=1,2, \label{free-generat}
+\end{eqnarray}
+%
+and where we set for convenience%
+%
+\begin{equation}
+\mathcal{J}^{j}_{mn} := \frac{8\pi\lambda^3}{g^2} w(j) J^{j}_{mn} \ . \label{source}
+\end{equation}
+%
+To obtain \eqref{free-generat}, one simply uses the generic field redefinition among the fields components given by% 
+%
+\begin{equation*}
+(\Phi_\beta)^j_{mn} \ = \ (\Phi^\prime_\beta)_{mn}^j - \frac12 P^j_{nm;kl}\ (\mathcal{J}_\beta)^j_{kl} \ = \ (\Phi^\prime_\beta)_{mn}^j - \frac12 (\mathcal{J}_\beta)^j_{rs} \ P_{rs;nm} \ . 
+\end{equation*}
+%
+Thus, correlation functions involving modes $(\Phi_\alpha)^j_{mn}$ will then be obtained from the successive action of the corresponding functional derivatives $\frac{\delta}{\delta(\mathcal{J}_\beta)^j_{nm}}$ on the relevant generating functional. Then we use%
+%
+\begin{equation*}
+e^{W(J)} = e^{-S^{\Omega=1}_4\left(\frac{\delta}{\delta{\mathcal{J}}}\right)} \ e^{W_0(J)}
+\end{equation*}
+%
+to obtain%
+%
+\begin{equation}
+W(J) = W_0(J) + \ln\left( 1 + e^{-W_0(J)} \left( e^{-S^{\Omega=1}_4\left(\frac{\delta}{\delta{\mathcal{J}}}\right)} - 1 \right) e^{W_0(J)} \right) \ , \label{connected-funct}
+\end{equation}
+%
+where $S^{\Omega=1}_4$ can be read-off from \eqref{critical-action}. The expansion of both the logarithm and $e^{-S^{\Omega=1}_4}$ then gives rise to the perturbative expansion. Performing a Legendre transformation on \eqref{connected-funct} yields the effective action $\Gamma(\Phi)$, namely%
+%
+\begin{equation}
+\Gamma(\Phi) + W(J) = \tr\left( \Phi_\beta J_\beta \right) \ , \qquad (\Phi_\beta)^j_{mn} = \frac{\delta W(J)}{\delta(\mathcal{J}_\beta)^j_{nm}} \ , \label{legendre}
+\end{equation}
+%
+where the 2nd relation is solved perturbatively.\par%
+%
+It will be instructive to first compute the one-loop contributions to the 2-point function for which only the 1st order (classical) solution of the second relation is needed. One easily obtains%
+%
+\begin{equation}
+(\Phi_\beta)^j_{mn} = \frac{1}{2} P^{j\tilde{j}}_{mn;rs}(\mathcal{J}_\beta)^{\tilde{j}}_{rs}
+:= (\Psi_\beta)^j_{mn} \ , \ \ \forall j\in\frac{\mathbb{N}}{2} \ , \ \ -j\le m,n\le j \ . \label{classic-field}
+\end{equation}
+%
+From the expansion of \eqref{connected-funct}, one infers that the relevant planar $W_{2P}(J)$ and non-planar $W_{2NP}(J)$ contributions to the (connected) 2-point correlation function $W_2(J)$ are%
+%
+\begin{eqnarray}
+%
+W_2(J) &=& W_{2P}(J) + W_{2NP}(J) \label{2p-connect} \ , \\
+%
+W_{2P}(J) &=& - \frac{64\pi\lambda^3}{g^2} \sum_{j,m,n,k,l} \ w(j) \ P^j_{nm;kn} \ (\Psi_\beta)^j_{ml} \ (\Psi_\beta)^j_{lk} \ , \label{2p-planar} \\
+%
+W_{2NP}(J) &=& - \frac{32\pi\lambda^3}{g^2} \sum_{j,m,n,k,l} \ w(j) \ P^j_{nm;lk} \ (\Psi_\beta)^j_{kn} \ (\Psi_\beta)^j_{ml} \ . \label{2p-nonplanar}
+%
+\end{eqnarray}
+%
+Combining \eqref{classic-field} with \eqref{2p-connect}-\eqref{2p-nonplanar}, we obtain the expression for the corresponding part of the effective action given by%
+%
+\begin{equation}
+\Gamma_{2} = \sum_{j,m,n,k,l} \left((\sigma_{2P})^j_{mn;kl} + (\sigma_{2NP})^j_{mn;kl}\right)(\Phi_\beta)^j_{mn} (\Phi_\beta)^j_{kl}\label{effect-action-1loop}
+\end{equation}
+in which
+\begin{eqnarray}
+%
+(\sigma_{2P})^j_{mn;kl} &=& \frac{-64\pi\lambda^3}{g^2} \sum_{q=-j}^j w(j) P^j_{qm;lq} \delta_{nk} \ , \label{eff-act-plan} \\
+%
+(\sigma_{2NP})^j_{mn;kl} &=& \frac{-32\pi\lambda^3}{g^2} w(j) P^j_{lm;kn} \ , \label{eff-act-np}
+%
+\end{eqnarray}
+%
+for all $j\in\frac{\mathbb{N}}{2}$ and $-j\le m,n,k,l\le j$, where we have separated the planar and non-planar contributions.\par%
+%
+One can verify that \eqref{eff-act-plan} and \eqref{eff-act-np} are always finite for $j=0$ and $j\to\infty$ and without singularity whenever $M>0$, which is assumed here. This is obvious for \eqref{eff-act-np}. For the planar contribution \eqref{eff-act-plan}, one simply observes that the summation over $q$ which corresponds to an internal ribbon line satisfies the estimate%
+%
+\begin{equation}
+\sum_{q=-j}^j w(j) P^j_{qm;lq} \le \frac{1}{g^2} \frac{(2j+1)}{M+\lambda^2\mu j(j+1)} \delta_{ml} \label{bound-1loop}
+\end{equation}
+%
+which is always finite for any $j\in\frac{\mathbb{N}}{2}$. Note that no dangerous UV/IR mixing shows up in the computation of the one-loop 2-point function.\par %
+%
+Eqn.\eqref{bound-1loop} reflects simply the existence of an estimate obeyed by the propagator \eqref{propagator} (see \eqref{envelop-model} below). This can be used to show finitude of the theory to all orders in perturbation. Indeed, consider now the ``truncated'' gauge model obtained from \eqref{zeta=0} by simply dropping the field $\Phi_3${\footnote{This {\it{formally}} amounts to use the gauge function $\Phi_3=0$ in \eqref{gauge-fix} instead of $\Phi_3=\theta_3$ which however is unsuitable as it does not fixe the symmetry.}}. The corresponding propagator for the $\Phi$'s obtained from \eqref{kin-op1} is simply given by%
+%
+\begin{equation} 
+(G^{-1})^{j_1j_2}_{mn;kl} = \frac{1}{8\pi\lambda^3} \Pi(M,j_1) \delta^{j_1j_2}\delta_{ml}\delta_{nk} \ , \label{g-1}
+\end{equation}
+%
+where we define%
+%
+\begin{equation}
+\Pi(M,j) := \left((j+1)(M+\lambda^2\mu j(j+1)\right)^{-1} \ . \label{Pi}
+\end{equation}
+%
+Then the following estimate holds true%
+%
+\begin{equation}
+0\le P^{j_1j_2}_{mn;kl}\le(G^{-1})^{j_1j_2}_{mn;kl} \ , \quad \forall j_1,j_2\in\frac{\mathbb{N}}{2}\ , \quad -j\le m,n,k,l\le j \ ,\label{envelop-model}
+\end{equation}
+where $P^{j_1j_2}_{mn;kl}$ is given by \eqref{propagator}. \par%
+%
+The "truncated model" belongs to one particular class of NCFT on $\mathbb{R}^3_\lambda$ among those which have been investigated in \cite{vit-wal-12} where it was shown that the models in this class are finite to all orders in perturbation. The key observation is that the amplitude of any ribbon diagram depends only on one $j\in\frac{\mathbb{N}}{2}$ (observe e.g the $\delta^{j_1j_2}$ in the propagator \eqref{propagator} or in the quartic vertices) so that summations over indices $m,n...\in\{-j,...,j\}$ corresponding to loop contributions simply contribute to the amplitude by a factor $2j+1$, stemming from the fact that the propagator $(G^{-1})$ \eqref{g-1} depends actually only on $j$. As a physical picture, one may regard $j$ as a kind of (conserved) momentum circulating into the diagram. The analysis done in \cite{vit-wal-12} can then be adapted to the present situation. Recall that any ribbon diagram ${\cal{D}}$ built from the quartic vertices is characterized by a set $(V,I,F,B)\subset\mathbb{N}$, 
+respectively the number of vertices, internal (ribbon) lines, faces, boundaries{\footnote{$F$ is obtained by closing the external lines of a diagram and counting the number of closed {\it{single}} lines while $B$ is equal to the number of closed lines with external legs}} related to the genus $\mathbf{g}$ of the Riemann surface on which $\mathcal{D}$ can be drawn by%
+%
+\begin{equation}
+2-2\mathbf{g}=V-I+F \ . \label{euler}
+\end{equation}
+%
+Let $\mathfrak{T}^j_{\mathcal{D}}$ be the (amputated) amplitude of $\mathcal{D}$. Any (ribbon) line carries 4 bounded indices, says $m,n,k,l\in\left\{-j,...,j\right\}$, whereas each inner (ribbon) loop actually contributes to one summation over a bounded index as it can be easily verified by simply balancing the number of Kronecker delta's in any vertex versus the 4 initial sums over internal bounded indices. Recall that the total number of inner loops $\mathcal{L}$ is given by%
+%
+\begin{equation}
+\mathcal{L}=F-B \ , \label{loops-number}
+\end{equation}
+%
+which thus corresponds to $F-B$ summations over inner indices. But from the expression for the propagator \eqref{g-1}, one easily realizes that any summation ``decouples'' from the propagators and contributes simply as $(2j+1)$. In other words, the amplitude does not depend on the internal lines. Therefore, the net contribution of all ${\cal{I}}$ loops of any diagram to its amplitude is given (up to unessential overall factors) by $1/(j+1)(m+\lambda^2\mu j(j+1))$. Hence, the amplitude $\mathfrak{T}^j_\mathcal{D}$ satisfies the estimate%
+%
+\begin{equation}
+\vert \mathfrak{T}^j_{\mathcal{D}}\vert \le K(j+1)^V(2j+1)^{F-B}\Pi(M,j)^I=K^\prime\frac{(j+1)^{V-I}(2j+1)^{F-B}}{(j^2+\rho^2)^{I}}\label{estim-amplt}
+\end{equation}
+%
+where $K$, $K^\prime$ are some finite constants, $\rho^2:=\frac{M}{\lambda\mu^2}$ and we used \eqref{Pi}, \eqref{euler} and \eqref{loops-number}. The RHS of \eqref{estim-amplt} is always finite for $j=0$ while it is also finite for $j\to\infty$ provided%
+%
+\begin{equation}
+\omega(\mathcal{D})=3I-V+B-F=2I+B+(2\mathbf{g}-2)\ge0,\label{power-count}
+\end{equation}
+%
+which is always true. Hence the truncated theory is (perturbatively) finite.\par%
+%
+Let us go back to the gauge model \eqref{critical-action}. As far as diagramatics is concerned, one observes that the two models differs only through their propagators. Hence, for a given diagram ${\cal{D}}$, the amplitude computed within the gauge model \eqref{critical-action} $\mathfrak{A}^j_{\mathcal{D}}$ satisfies $\vert \mathfrak{A}^j_{\mathcal{D}}\vert\le \vert \mathfrak{T}^j_{\mathcal{D}}\vert$, thanks to the estimate \eqref{envelop-model}. Indeed, by using the general expression for any ribbon amplitudes of NC $\phi^4$ theory, one infers $\mathfrak{A}^j_{\mathcal{D}}$ has the generic structure%
+%
+\begin{equation}
+\mathfrak{A}^j_{\mathcal{D}} = \sum_{\mathcal{I}} \prod_\lambda P^j_{m_\lambda(\mathcal{I}) n_\lambda(\mathcal{I});k_\lambda(\mathcal{I}) l_\lambda(\mathcal{I})} F^j(\delta)_{m_\lambda(\mathcal{I}) n_\lambda(\mathcal{I});k_\lambda(\mathcal{I}) l_\lambda(\mathcal{I})},\label{amplit-arb}
+\end{equation}
+%
+where $\mathcal{I}$ is some set of (internal) indices, all belonging to $\{-j,...j\}$ so that all the sums in $\sum_{{\cal{I}}}$ are finite, $\lambda$ labels the internal lines of ${\cal{D}}$, $P^j_{mn;kl}$ is the (positive) propagator given in \eqref{propagator} and $F^j(\delta)_{mn;kl}$ collects all the delta's plus vertex weights depending only on $j$. One has%
+%
+\begin{eqnarray}
+\vert\mathfrak{A}^j_{\mathcal{D}}\vert &\le& \sum_{\mathcal{I}} \prod_\lambda \left|(G^{-1})^j_{m_\lambda(\mathcal{I}) n_\lambda(\mathcal{I}) ; k_\lambda(\mathcal{I}) l_\lambda(\mathcal{I})} \right| \ \left| F^j(\delta)_{m_\lambda({\cal{I}}) n_\lambda({\cal{I}});k_\lambda({\cal{I}}) l_\lambda({\cal{I}})} \right|\nonumber \\ 
+&\le& K(j+1)^V(2j+1)^{F-B}\Pi(M,j)^I<\infty
+\end{eqnarray}
+%
+where the last relation stems from \eqref{power-count}. One concludes that all the ribbon amplitudes stemming from \eqref{critical-action} are finite so that $S^f_{\Omega=1}$ is perturbatively finite to all orders.\par%
+%
+The above analysis can be extended to the case $\Omega\ne1$ for which the relevant action is given by \eqref{stot}-\eqref{squart}. The relevant kinetic operator is defined by%
+%
+\begin{eqnarray}
+\left(Q_\Omega\right)^{j_1j_2}_{mn;kl} &=& 8\pi\lambda^3 (j_1+1) \ \left(\Lambda_\Omega\right)^{j_1}_{kl} \ \delta^{j_1j_2} \delta_{ml} \delta_{kn} \ , \label{propaQ} \\
+\left(\Lambda_\Omega\right)^{j}_{kl} &=& M + \mu \lambda^2 j(j+1) + \frac{2\Omega}{\lambda^2} (k+l)^2 + \frac{2}{\lambda^2} (k-l)^2 \ , \label{spectrumQ}
+\end{eqnarray}
+%
+for any $j\in\frac{\mathbb{N}}{2},\ -j\le m,n,k,l\le j$. Note that the spectrum of $Q$ is positive, which is obvious from \eqref{spectrumQ}. The corresponding propagator is given by%
+%
+\begin{equation}
+\left(Q_\Omega^{-1}\right)^{j_1j_2}_{mn;kl} = 
+\frac{ \delta^{j_1j_2} \ \delta_{ml} \ \delta_{kn}}{8\pi\lambda^3 \ (j_1+1) \ \left(M + \mu \lambda^2 j(j+1) + \frac{2\Omega}{\lambda^2} (k+l)^2 + \frac{2}{\lambda^2} (k-l)^2\right) } \ . \label{q-1}
+\end{equation}
+%
+As for the case $\Omega=1$ the propagator \eqref{q-1} verifies the following estimate%
+%
+\begin{equation}
+0\le \left(Q_\Omega^{-1}\right)^{j_1j_2}_{mn;kl}\le(G^{-1})^{j_1j_2}_{mn;kl} \ , \quad \forall j_1,j_2\in\frac{\mathbb{N}}{2} \ , \quad -j\le m,n,k,l\le j \ . \label{envelop-number2}
+\end{equation}
+%
+Thanks to this estimate, the analysis carried out above for the amplitudes of the $\Omega=1$ theory can be reproduced for $S^f_{\Omega\ne1}$ showing finitude of the amplitudes to all orders in perturbation.\par%
+%
+The perturbative finitude of the present (local matrix model{\footnote{i.e a model with kinetic operator of the form $K_{mn;kl}=\delta_{mn}\delta_{kl}f(k,l)$ }}) $S^f_{\Omega}$ may be viewed as the result of the conjunction of 3 features, namely a sufficient rapid decay of the propagator at large indices (large $j$) so that correlations at large separation indices disappear, the special role played by $j$ the radius of the fuzzy sphere components as a (UV/IR) cut-off together with the existence of an upper bound for the propagator that depends only of the cut-off.\\
+As pointed out in the subsection\ref{subsection31}, the gauge-fixed action $S^f_{\Omega}$ bears some similarity with the so-called duality-covariant LSZ model \cite{LSZ}. In fact, one observes that $S^f_{\Omega}$ \eqref{quasilsz} coincides {\it{formally}} with one of the actions investigated in \cite{LSZ} leading to an exactly solvable model whenever $\Omega=\frac{1}{3}$. At this value, the quartic interaction potential in \eqref{quasilsz} depends only on the monomial $(\Phi^\dag\Phi)$, which was one of the necessary conditions advocated in \cite{LSZ} to obtain exact solvability, while the (positive) kinetic operator is somewhat different from the one of \cite{LSZ}.%
+
+%----------------------------------------------------------------------------%
+
+\section{\texorpdfstring{Exact formulas for $S^f_{\Omega=\frac{1}{3}}$}{Exact formulas} \\ {\small \texorpdfstring{An exact determinant formula for the partition function $Z_j^{\Omega=\frac{1}{3}}$}{Exact partition function}}} \label{section4}
+
+In this section, we assume $\Omega=\frac{1}{3}$. For the corresponding kinetic operator $Q_{\Omega=\frac{1}{3}}$ \eqref{propaQ}, the partition function satisfies the following factorisation property%
+%
+\begin{eqnarray}
+Z(Q_{\Omega=\frac{1}{3}}) &:=& Z_{\Omega=\frac{1}{3}} \ = \ \int \mathcal{D}\Phi \ \mathcal{D} \Phi^{\dag} \ \mbox{exp}\left(-S^f_{\Omega=\frac{1}{3}}\right)  \ = \ \prod_{j\in\frac{\mathbb{N}}{2}} Z_j^{\Omega=\frac{1}{3}} \ , \label{zq} \\
+%
+Z_j^{\Omega=\frac{1}{3}} &=& \int \mathcal{D}\Phi^j \ \mathcal{D}\Phi^{\dag j} \ \mbox{exp}\left( - 6 z_j \mbox{ tr}_j\left(\Phi^j Q_{\Omega=\frac{1}{3}}^j\Phi^{\dag j}+\Phi^{\dag j} Q_{\Omega=\frac{1}{3}}^j\Phi^j\right) \right) \nonumber \\
+&& \times \ \mbox{exp}\left( - 64 z_j \mbox{ tr}_j\left(\Phi^j\Phi^{\dag j}\Phi^j\Phi^{\dag j}\right) \right) \ , \label{zqj} 
+\end{eqnarray}
+%
+where%
+%
+\begin{equation}
+\mathcal{D} \Phi^j \ \mathcal{D} \Phi^{\dag j} := \prod_{-j\le m,n\le j} \mathcal{D} \Phi^j_{mn} \mathcal{D} \Phi^{\dag j}_{mn} \ , \quad \mbox{and } \ z_j = \frac{8\pi\lambda^3}{3g^2} w(j) \label{measure}
+\end{equation}
+%
+with $Q^j_{\Omega=\frac{1}{3}}$ given by \eqref{propaQ}-\eqref{spectrumQ}{\footnote{with however the weight $w(j)$ factored out from \eqref{spectrumQ} as it appears in front of the argument of the exponential.}}, and $\mbox{tr}_j$ and the matrix $\Phi^j\in\mathbb{M}_{2j+1}(\mathbb{C})$ defined in \eqref{traceb}.\par%
+%
+%
+\bigskip%
+%
+%
+Define a change of integration variable by making use of a singular value decomposition of $\Phi^j$. Namely, one has%
+%
+\begin{equation}
+\Phi^j = \mathsf{U}^\dag R^j \mathsf{V}, 
+\end{equation}
+%
+where $\mathsf{U}$ and $\mathsf{V}$ are unitary matrices in $\mathbb{M}_{2j+1}(\mathbb{C})$ and $R^j\in\mathbb{M}_{2j+1}(\mathbb{C})$ is a diagonal positive matrix. Set $R^j:=\text{diag}(\rho^j_{m})$ with $\rho^j_m\ge0$ and $t^j_m:=(\rho^{j}_m)^2$ for any $-j\le m\le j$. Then, by further denoting the invariant Haar measure of the unitary group $U(2j+1)$ by $[D\mathsf{X}]$, \eqref{zqj} can be written as%
+%
+\begin{eqnarray}
+Z_j^{\Omega=\frac{1}{3}} &=& \int [D\mathsf{U}] \ [D\mathsf{V}] \prod_{k=-j}^j \int_0^{+\infty} dt^j_k \ \left(\Delta\left(\left(R^{j}\right)^2\right)\right)^2 \ e^{- 64 z_j \mbox{ tr}_j\left(\left(R^{j}\right)^4\right)}  \nonumber \\
+&& \times \ e^{- 6 z_j \mbox{ tr}_j\left(Q_{\Omega=\frac{1}{3}}^j \mathsf{V}^\dag \left(R^{j}\right)^2 \mathsf{V} \ + \ Q_{\Omega=\frac{1}{3}}^j \mathsf{U}^\dag \left(R^{j}\right)^2 \mathsf{U} \right)}  \ , \label{zj-interm}
+\end{eqnarray}
+%
+where $\Delta\left(\left(R^{j}\right)^2\right)$ denotes the Vandermonde determinant related to the matrix $\left(R^{j}\right)^2$ given by%
+%
+\begin{equation}
+\Delta\left(\left(R^{j}\right)^2\right) = \prod_{-j\le k<l\le j} \left(t^{j}_l-t^{j}_k\right) \ . \label{vanderrho2}
+\end{equation}
+%
+From \eqref{zj-interm}, one observes that one can decouple the field variables $\mathsf{U}$ and $\mathsf{V}$ (the "angular" part) from the positive diagonal ("radial") part, thanks to the expression for the quartic potential at $\Omega=\frac{1}{3}$ (see \eqref{quasilsz}).\par%
+%
+The integration over $\mathsf{U}$ and $\mathsf{V}$ can be performed by using the Harish-Chandra-Itzykson-Zuber integral formula. Recall that for any hermitean matrices $A,B\in\mathbb{M}_n(\mathbb{C})$ with eigenvalues $\lambda_1(A) \le ... \le \lambda_n(A)$ and $\lambda_1(B) \le ... \le \lambda_n(B)$, and any unitary matrix $\mathsf{W} \in \mathbb{M}_n(\mathbb{C})$, one has%
+%
+\begin{equation}
+\int [D\mathsf{W}] \ e^{z \ \mbox{tr}_j\left(A \mathsf{W} B \mathsf{W}^\dag \right)} = \frac{1}{\Delta(A)\Delta(B)} \ \left(\prod_{k=1}^{n-1} k! \right) \ z^{\frac{n(1-n)}{2}} \ \det_{1\le p , l \le n} \left(e^{z \lambda_p(A) \lambda_l(B)} \right) \ , \label{HC}
+\end{equation}
+%
+where $z\in\mathbb{C} \backslash \{0\}$, and $[D\mathsf{W}]$ is the Haar measure on $U(n)$. \par%
+%
+\bigskip
+%
+Using \eqref{HC} in \eqref{zj-interm} yields%
+%
+\begin{eqnarray}
+Z_j^{\Omega=\frac13} &=& N^j \prod_{k=-j}^j \int_0^\infty dt^j_k \ \left( \det_{-j \le p,l \le j} \left(e^{- 6 z_j t^j_p \omega^j_{l} } \right) \right)^2 \ e^{- 64 z_j \left( \overset{j}{\underset{m=-j}{\sum}} \ \left(t^{j}_m\right)^2\right)} \ , \nonumber \\
+%
+&=& N^j \prod_{k=-j}^j \int_0^\infty  dt^j_k \left( \sum_{\sigma\in\mathfrak{S}_{2j+1}} \left|\sigma\right| \prod_{k=-j}^j \ e^{- 6 z_j t^j_k\omega^j_{\sigma(k)}} \right)^2 \ e^{- 64 z_j \left( \overset{j}{\underset{m=-j}{\sum}} \ \left(t^{j}_m\right)^2\right)} \ , \label{zj-partialbis} 
+\end{eqnarray}
+%
+where%
+%
+\begin{equation}
+N^j = \left(\Delta\left(Q_{\Omega=\frac13}^j\right)\right)^{-2}\left(\prod_{k=1}^{2j}k!\right)^2 z_j^{-2j(2j+1)} \ . \label{normal-zj}
+\end{equation}
+%
+$\omega^j_k$ are the eigenvalues of the real symmetric matrix defined by $\left(\Lambda_{\Omega=\frac13}\right)^j_{mn}$ in \eqref{spectrumQ}, and $\vert\sigma\vert$ is the signature of the permutation $\sigma$ in $\mathfrak{S}_{2j+1}$.\par%
+%
+The integration over the $t^j_k$'s can now be performed. We expand the square of the sum in \eqref{zj-partialbis} to obtain%
+%
+\begin{equation}
+Z_j^{\Omega=\frac13} = N^j \ \sum_{\sigma_1,\sigma_2\in\mathfrak{S}_{2j+1}} \left|\sigma_1\right| \ \left| \sigma_2 \right| \prod_{k=-j}^j \int_0^\infty dt^j_k \ e^{- 64 z_j \left(t^j_k\right)^2 - 6 z_j \omega^j_{\sigma_1\sigma_2(k)} t^j_k } \ , \label{calcul1} 
+\end{equation}
+%
+where we have defined%
+%
+\begin{equation*}
+\omega^j_{\sigma_1\sigma_2(k)} := \omega^j_{\sigma_1(k)} + \omega^j_{\sigma_2(k)} \ .
+\end{equation*}
+%
+We now combine \eqref{calcul1} with the relation%
+%
+\begin{equation}
+\int_0^\infty dx \ e^{-ax^2-bx} = \frac12 \sqrt{\frac{\pi}{a}} \ \ \mbox{Erfc}\left(\frac{b}{2\sqrt{a}}\right) \ e^{\frac{b^2}{4a}} \ , \quad \mbox{with } \ \Re(a) \ge 0 \ , \ \mbox{and } \ \Re(b) > 0 \ , \label{erfc-integ}
+\end{equation}
+%
+where ${\text{Erfc}}$\footnote{for more details see \href{http://mathworld.wolfram.com/Erfc.html}{Weisstein, Eric W. "Erfc." From MathWorld--A Wolfram Web Resource.}} is the complementary error function defined by%
+%
+\begin{equation*}
+\text{Erfc}(x) = \frac{2}{\sqrt{\pi}} \int_x^\infty dy \ e^{-y^2} \ , \quad \forall x \in \mathbb{R} \ .
+\end{equation*}
+%
+Hence we write $Z_j^{\Omega=\frac13}$ as%
+%
+\begin{equation}
+Z_j^{\Omega=\frac13} = N^j \sum_{\sigma_1,\sigma_2\in\mathfrak{S}_{2j+1}} \left|\sigma_1\right| \ \left|\sigma_2\right| \ \prod_{k=-j}^j f_j\left(\omega_{\sigma_1\sigma_2(k)}^j\right) \ , \label{calcul2}
+\end{equation}
+%
+where%
+%
+\begin{equation}
+f_j\left(\omega_{\sigma_1\sigma_2(k)}^j\right) = 
+\frac{1}{2} \sqrt{\frac{\pi}{64 z_j}} \ \ \text{Erfc}\left(\frac38 \sqrt{z_j} \ \omega^j_{\sigma_1\sigma_2(k)} \right) \ \mbox{exp}\left(\frac{9}{64} z_j  \left(\omega^{j}_{\sigma_1\sigma_2(k)} \right)^2\right) \ . \label{functionspect}
+\end{equation}
+%
+By using the properties of determinants, \eqref{calcul2} can be written as%
+%
+\begin{equation}
+Z_j^{\Omega=\frac13} = N^j \  \ (2j+1)! \ \ \det_{-j\le m,n\le j} \left(f_j(\omega^j_m+\omega^j_n)\right) \ , \label{partitionfactor}
+\end{equation}
+%
+for any $j\in\frac{\mathbb{N}}{2}$. The ratio of determinants appearing in the RHS of \eqref{partitionfactor} signals that any $Z^{\Omega=\frac13}_j$ can be related to a $\tau$-function such as those occurring in integrable hierarchies \cite{integ1-rev}. This could have been expected from the similarity between the present model and the LSZ model \cite{LSZ}. These models however have differences. The characterization of the partition function $Z^{\Omega=\frac13}_j$ in term of a $\tau$-function and related discussion will be given below.\par%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+%
+% Finish the computation for the condensate.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+An expression for the expectation value of the trace of the operator $\Phi^\dag\Phi$, which may be viewed as a kind of analog of the condensate, can be computed exactly. Write
+%
+\begin{equation*}
+\Phi^\dag\Phi = \sum_{j,m,n}(\Phi^\dag\Phi)^j_{mn}v^j_{mn}
+\end{equation*}
+in obvious notations. %
+%
+{\color{red}% 
+Now, observe that the connected part of the expectation $\langle(\Phi^\dag\Phi) \rangle$ is determined by the quantities%
+%
+\begin{equation}
+\left\langle(\Phi^\dag\Phi)^k_{nm}\right\rangle = \frac{1}{Z(Q)} \ \frac{\delta}{\delta\Sigma^k_{nm}} \left(\prod_{j\in\frac{\mathbb{N}}{2}}Z_j(Q;\Sigma^j)\right)\Bigg|_{\Sigma=0 },\ k\in\frac{\mathbb{N}}{2} \ , \quad -k\le m,n\le k \ ,
+\end{equation}
+%
+}%
+%
+where%
+%
+\begin{eqnarray}
+Z_j^{\Omega=\frac13}(\Sigma^j) &=& \int \mathcal{D} \Phi^j \ \mathcal{D} \Phi^{\dag j} \ e^{- 6 z_j \mbox{ tr}_j\left(\Phi^j Q_{\Omega=\frac13}^j\Phi^{\dag j} + \Phi^{\dag j} Q_{\Omega=\frac13}^j \Phi^j\right)} \nonumber \\
+&& \times \ e^{ 64 z_j \mbox{ tr}_j\left(\Phi^j\Phi^{\dag j}\Phi^j\Phi^{\dag j}\right) + 3 z_j \mbox{ tr}_j\left(\Sigma^j\Phi^{\dag j}\Phi^j\right) } \ , \label{condensat-generating}
+\end{eqnarray}
+%
+and the source of the "composite operator" $\Sigma^j\in\mathbb{M}_{2j+1}(\mathbb{C})$ is hermitean. %
+%
+{\color{red}%
+%
+Hence, one can write $\Sigma^j=U\sigma^jU^\dag$ for some unitary matrix $U$ where $\sigma^j=\text{diag}(s^j_k)_{-j\le k\le j}$. From this follows that
+%
+\begin{equation}
+\left\langle (\Phi^\dag\Phi)^j_{nm} \right\rangle = \frac{1}{Z_j(Q)} \ \frac{\delta}{\delta\Sigma^j_{mn}} Z_j(Q;\Sigma^j)\bigg|_{\Sigma^j=0} \ . \label{condensat-component}
+\end{equation}
+%
+for any $j\in\frac{\mathbb{N}}{2}, \-j\le m,n\le j$. Moving to the sources $s^j_k$, it can be realized that the action of the functional derivative $\frac{\delta}{\delta s^j_k}$ generates the expectation $\langle (\Phi^\dag\Phi)^j_{qr}U_{rk}U^\dag_{kq}\rangle$ (no summation over $k$). Therefore%
+%
+\begin{equation}
+\left\langle \mbox{tr}_j \left((\Phi^\dag\Phi)^j\right) \right\rangle = \sum_{k=-j}^j\frac{\delta}{\delta s^j_k}\ln(Z_j(Q;\Sigma^j)) \ ,
+\end{equation}
+%
+where we used $U^\dag U=U U^\dag=\bbone$.%
+%
+} %
+%
+Now by performing a singular value decomposition of $\Phi^j$ in \eqref{condensat-generating} and integrating over the angular part 
+using \eqref{HC}, we obtain%
+%
+\begin{equation}
+Z_j^{\Omega=\frac13}(\Sigma^j) = N^j(\Sigma^j) \prod_{k=-j}^j \int_0^\infty dt^j_k \ \det_{p,l}\left( e^{ - 6 z_j t^j_p \omega^j_{l} } \right) %\nonumber \\
+%&& 
+%\times \ 
+\det_{p,l}\left( e^{ - 3 z_j t^j_p ( \omega^j_{l} + s^j_l) } \right) \ 
+e^{ - 64 z_j \left( \underset{-j\leq m \leq j}{\sum} t^{j2}_m \right)} \ , \label{decadix}
+\end{equation}
+%
+with $-j\le p,l\le j$, $\omega_l^j$ and $tĵ_p$, still the eigenvalues of $\left(\Lambda_{\Omega=\frac13}\right)^j_{mn}$ and $\left(R^j\right)^2$ respectively, and 
+%
+\begin{equation*}
+N^j(\Sigma^j) = N^j \Delta(Q^j_{\Omega=\frac13}) \left( \Delta(Q^j_{\Omega=\frac13}+\Sigma^j) \right)^{-1} \ ,
+\end{equation*}
+%
+where  and $\Delta(Q^j_{\Omega=\frac13}+\Sigma^j)$ is the Vandermonde determinant built from $\lambda^j_k=\omega^j_k+s^j_k$.
+%
+Expanding the determinants in the numerator of \eqref{decadix}, we obtain%
+%
+\begin{eqnarray}
+Z_j^{\Omega=\frac13}(\Sigma^j) &=& N^j(\Sigma^j) \sum_{\pi_1,\pi_2\in\mathfrak{S}_{2j+1}} \left|\pi_1\right| \ \left|\pi_2\right| \prod_{k=-j}^j f_j\left(\omega^j_{\pi_1(k)}+\lambda^j_{\pi_2(k)}\right) \nonumber\\
+&=& N^j(\Sigma^j) \ (2j+1)! \ \det_{-j\le m,n\le j}\left(f_j\left(\omega^j_m+\lambda^j_n\right)\right) \ , \label{generat-composit}
+\end{eqnarray}
+%
+where $f(x)$ can be read off from \eqref{functionspect}.\par%
+%
+%
+{\color{red}% 
+%
+It can be realized that the generating functional is given (up to the unessential overall factor $N^j(\Sigma^j)$ that we drop from no on) to the $\tau$-function of an integrable 2-d lattice Toda hierarchy. Indeed, by using the the standard expression for the Vandermonde determinants in \eqref{generat-composit} as%
+%
+\begin{equation}
+\Delta(x)=\det_{-j\le m,n\le j}\left(x_m^{n-1}\right) \ ,
+\end{equation}
+%
+and reexpressing the ratio of determinants in \eqref{generat-composit} from a combination of complex integrals with the Cauchy-Binet identity given generically by%
+%
+\begin{equation}
+\exp\left(\sum_{n=1}^\infty t_nz^n\right) = \prod_{n=1}^{N}\frac{\lambda_n}{\lambda_n-z} \ , \quad t_n:=\frac{1}{n}\sum_{k=1}^{N}(\lambda_k)^n \ ,
+\end{equation}
+%
+$Z_j(Q;\Sigma)$ can be easily cast into the form%
+%
+\begin{equation}
+Z_j(Q;\Sigma) = \det_{-j\le m,n\le j} \left(\int \frac{dz_1}{i2\pi} \ \frac{dz_2}{i2\pi} \ z_1^{m-1} z_2^{n-1} \ f_j\left(z_1^{-1}+z_2^{-1}\right) \ \exp\left(\sum_{n=1}^\infty t_nz_1^n+ \bar{t}_nz_2^n\right) \right) \ , \label{tau-toda}
+\end{equation}
+%
+in which%
+%
+\begin{equation}
+t_n = \frac{1}{n} \sum_{k=1}^{2j+1} (\omega^j_k)^n \ , \quad \bar{t}_n=\frac{1}{n}\sum_{k=1}^{2j+1}(\omega^j_k+\sigma^j_k)^n \ . \label{time-variable} 
+\end{equation}
+%
+}%
+%
+
+%----------------------------------------------------------------------------%
+
+\section{Discussion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+%
+% Write a discussion.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+(blablabla)
+
+%----------------------------------------------------------------------------%
+
+\vspace*{40pt}\noindent\textbf{Acknowledgments}: One of us (JCW) thanks M. Dubois-Violette for numerous discussions on the role of canonical connections in noncommutative geometry and P. Vitale for discussions at various stage of this work. Discussions with N. Pinamonti are gratefully acknowledged. 
+
+%----------------------------------------------------------------------------%
+
+\appendix
+
+%----------------------------------------------------------------------------%
+
+\section{Examples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO
+%
+% Write Z_{j=1/2}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{eqnarray*}
+&& Z_{j=1/2}^{\Omega=\frac13} = N^{\frac12} \ 2! \ \det_{-\frac12\le m,n \le \frac12}\left( f_\frac12\left(\omega_m^{\frac12} + \omega_n^{\frac12}\right)\right) \\[2pt]
+&& N^{\frac12} = \left( \Delta\left(Q^\frac12_{\Omega=\frac13}\right) \right)^{-2} \  (1!)^2 \ \left( z_ \frac12 \right)^{-2} \\[2pt]
+&& z_ \frac12 = \frac{4\pi\lambda^3}{g^2} \\[2pt]
+&& \left(Q^\frac12_{\Omega=\frac13}\right)_{mn} = M + \frac34 \mu \lambda^2 + \frac{8}{3\lambda^{2}} \left(m^2+n^2-mn\right) \\
+&& Q^\frac12_{\Omega=\frac13} = 
+\left( \begin{array}{ccc}
+a + \frac{4}{3\lambda^2} & a \\[5pt]
+a & a + \frac{4}{3\lambda^2} \end{array} \right) 
+\quad \mbox{with } \ a =  M + \frac34 \mu \lambda^2 + \frac{2}{\lambda^2} \\[2pt]
+&& \Delta\left(Q^\frac12_{\Omega=\frac13}\right) = \frac{8}{3\lambda^2} \left(a+\frac29\right) \\[2pt]
+&& N^{\frac12} = \frac{729}{256} \frac{g^4}{\pi^2\lambda^2} \\[2pt] 
+&& f_\frac12(x) = \frac12 \sqrt{\frac{g^2}{256 \lambda^3}} \ \mbox{Erfc}\left( \frac{3\lambda^{\frac32}}{4g} x \right) \ \mbox{exp}\left( \frac{9\pi\lambda^3}{16g^2} x^2\right) \\[2pt]
+&& Q_\mathsf{diag} = 
+\left( \begin{array}{ccc}
+\frac{4}{3\lambda^2} & 0 \\[5pt]
+0 & 2M + \frac32 \mu \lambda^2 + \frac{16}{3\lambda^2} \end{array} \right)
+\end{eqnarray*}
+
+
+
+%----------------------------------------------------------------------------%
+
+\small
+
+\begin{thebibliography}{88} 
+
+%\newcommand{\arxiv}[3]{\href{#3}{\texttt{arXiv:#1 [#2]}}}
+
+\bibitem{Connes1}%
+A. Connes, % 
+``\emph{Noncommutative Geometry}'', %
+\href{http://www.alainconnes.org/en/downloads.php}{Academic Press, San Diego, CA, (1994)}. %
+
+\bibitem{GBVF}%
+J.~M. Gracia-Bond{\'\i}a, J.~C. V{\'a}rilly and H. Figueroa, %
+``\emph{Elements of Noncommutative Geometry}'', % 
+\href{http://dx.doi.org/10.1007/978-1-4612-0005-5}{Birkha\"user Advanced Texts, Basler Lehrb\"ucher, Birkha\"user Boston. Inc., Boston, MA (2001)}.%
+%%CITATION = INSPIRE-552686;%%
+
+\bibitem{Doplich1}%
+S. Doplicher, K. Fredenhagen and J. E. Roberts, %
+``\emph{Space-time quantization induced by classical gravity}'', %
+\href{http://dx.doi.org/10.1016/0370-2693(94)90940-7}{Phys. Lett. B\textbf{331.1}, 39--44 (1994)}.%
+%%CITATION = PHLTA,B331,39;%%
+
+\bibitem{witt1}%
+E. Witten, %
+``\emph{Noncommutative geometry and string field theory}'', % 
+\href{http://dx.doi.org/10.1016/0550-3213(86)90155-0}{Nucl. Phys. B\textbf{268.2}, 253--294 (1986)}.%
+%%CITATION = NUPHA,B268,253;%%
+
+\bibitem{mdv1} 
+M. Dubois-Violette, R. Kerner, J. Madore, %
+``\emph{Noncommutative differential geometry of matrix algebras}'', %
+\href{http://dx.doi.org/10.1063/1.528916}{J. Math. Phys. \textbf{31.2}, 316--322 (1990)};\par%
+%%CITATION = JMAPA,31,316;%%
+``\emph{Noncommutative differential geometry and new models of gauge theory}'', %
+\href{http://dx.doi.org/10.1063/1.528917}{J. Math. Phys. \textbf{31.2}, 323--330 (1990)}.%
+%%CITATION = JMAPA,31,323;%%
+
+\bibitem{gm90} %
+J. Madore, %
+``\emph{The commutative limit of a matrix geometry}'', %
+\href{http://dx.doi.org/10.1063/1.529418}{J. Math. Phys. \textbf{32.2}, 332--335 (1991)}.\par%
+H. Grosse, J. Madore, %
+%%CITATION = JMAPA,32,332;%%"
+\emph{A noncommutative version of the Schwinger model}, %
+\href{http://dx.doi.org/10.1016/0370-2693(92)90011-R}{Phys. Lett. B\textbf{283.3}, 218--222 (1992)}.%
+%%CITATION = PHLTA,B283,218;%%
+
+\bibitem{dnsw-rev}%
+M.~R. Douglas and N.~A. Nekrasov, %
+``\emph{Noncommutative field theory}'', %
+\href{http://dx.doi.org/10.1103/RevModPhys.73.977}{Rev. Mod. Phys. \textbf{73.4}, 977 (2001)}, %
+\href{http://arxiv.org/abs/hep-th/0106048}{\texttt{arXiv:0106048 [hep-th]}};\par%
+%%CITATION = HEP-TH/0106048;%%
+R. J. Szabo, %
+``\emph{Quantum field theory on noncommutative spaces}'', %
+\href{http://dx.doi.org/10.1016/S0370-1573(03)00059-0}{Phys. Rep. \textbf{378.4}, 207--299 (2003)};\par%
+%%CITATION = HEP-TH/0109162;%%
+J.-C. Wallet, % 
+``\emph{Noncommutative Induced Gauge Theories on Moyal Spaces}'', %
+\href{http://dx.doi.org/10.1088/1742-6596/103/1/012007}{J. Phys. Conf. Ser. \textbf{103.1}, 012007 (2008)}, %
+\href{http://arxiv.org/abs/arXiv:0708.2471}{\texttt{arXiv:0708.2471 [hep-th]}}.%
+%%CITATION = ARXIV:0708.2471;%%
+
+\bibitem{Hammaa}% 
+A.~B. Hammou, M. Lagraa and M.~M. Sheikh-Jabbari, %
+``\emph{Coherent state induced star product on R**3(lambda) and the fuzzy sphere}'', %
+\href{http://dx.doi.org/10.1103/PhysRevD.66.025025}{Phys. Rev. D\textbf{66.2}, 025025 (2002)}, %
+\href{http://arxiv.org/abs/hep-th/0110291}{\texttt{arXiv:0110291 [hep-th]}}.%
+%%CITATION = HEP-TH/0110291;%%
+
+\bibitem{selene}%
+J.~M. Gracia-Bond\'ia, F. Lizzi, G. Marmo and P. Vitale, %
+``\emph{Infinitely many star products to play with}'', %
+\href{http://dx.doi.org/1126-6708/2002/04/026/}{Journal of High Energy Physics \textbf{2002.04}, 026 (2002)}, %
+\arxiv{0112092}{hep-th}{http://arxiv.org/abs/hep-th/0112092}.%
+%%CITATION = HEP-TH/0112092;%%"
+
+\bibitem{vit-wal-12}% 
+P. Vitale, J.-C. Wallet, %
+``\emph{Noncommutative field theories on $\mathbb{R}^3_\lambda$: Toward UV/IR mixing freedom}'', %
+\href{http://dx.doi.org/10.1007/JHEP04(2013)115}{J. High Energy Phys. \textbf{2013.4}, 1--36 (2013)}, %
+\arxiv{1212.5131}{hep-th}{http://arxiv.org/abs/1212.5131}.%
+%%CITATION = ARXIV:1212.5131;%%",
+
+\bibitem{gervitwal-13}% 
+A. G\'er\'e, P. Vitale, J.-C. Wallet,% 
+``\emph{Quantum gauge theories on noncommutative three-dimensional space}'', %
+\href{http://dx.doi.org/10.1103/PhysRevD.90.045019}{Phys. Rev. D\textbf{90.4}, 045019 (2014)}, %
+\arxiv{1312.6145}{hep-th}{http://arxiv.org/abs/1312.6145}.%
+%%CITATION = ARXIV:1312.6145;%%
+
+\bibitem{ksmap}%
+P. Kustaanheimo and E. Stiefel, % 
+``\emph{Perturbation theory of Kepler motion based on spinor regularization}'', %
+\href{http://gdz.sub.uni-goettingen.de/dms/resolveppn/?PPN=GDZPPN00218124X}{Journal f\"ur die reine und angewandte Mathematik \textbf{218}, 204--219 (1965)}.%
+
+\bibitem{pv-ksmap}% 
+P. Vitale, %
+``\emph{Noncommutative field theories on $\mathbb{R}^3_\lambda$}'', %
+\href{http://dx.doi.org/10.1002/prop.201400037}{Fortschr. Phys. \textbf{62.9‐10}, 825--834 (2014)}, %
+\arxiv{1406.1372}{hep-th}{http://arxiv.org/abs/1406.1372}.%
+%%CITATION = ARXIV:1406.1372;%%
+
+\bibitem{mdv88-99}%
+M. Dubois-Violette, %
+``\emph{Dérivations et calcul différentiel non commutatif}'', %
+\href{http://patriciadv.free.fr/MDV/Publications_files/88-19.pdf}{Comptes Rendus de l'Académie des Sciences - Series I - Mathematics, \textbf{307}, 403--408 (1988)};\par%
+``\emph{Lectures on graded differential algebras and noncommutative geometry}'', %
+Noncommutative Differential Geometry and Its Applications to Physics, Springer Netherlands, (Proceedings, Workshop, Shonan, Hayama, Japan, May 31-June 4, 1999), 245--306 (2001), %
+\arxiv{9912017}{math}{http://arxiv.org/abs/math/9912017}.%
+
+\bibitem{cgmw-20}%
+J.-C. Wallet, %
+``\emph{Derivations of the Moyal algebra and Noncommutative gauge theories}'', %
+\href{http://dx.doi.org/10.3842/SIGMA.2009.013}{SIGMA \textbf{5}, 013 (2009)}, %
+\arxiv{0811.3850}{math-ph}{http://arxiv.org/abs/arXiv:0811.3850};\par%
+%CITATION = ARXIV:0811.3850;%%
+E. Cagnache, T. Masson and J-C. Wallet, % 
+``\emph{Noncommutative Yang-Mills-Higgs actions from derivation based differential calculus}'', %
+\href{http://dx.doi.org/10.4171/JNCG/69}{J. Noncommut. Geom. \textbf{5.1}, 39--67 (2011)}, %
+\arxiv{0804.3061}{hep-th}{http://arxiv.org/abs/arXiv:0804.3061};\par%
+%%CITATION = ARXIV:0804.3061;%%
+A. de Goursac, T. Masson, J.-C. Wallet, %
+``\emph{Noncommutative $\varepsilon$-graded connections}'', %
+\href{http://dx.doi.org/10.4171/JNCG/94}{J. Noncommut. Geom. \textbf{6.2}, 343--387 (2012)}, %
+\arxiv{0811.3567}{math-ph}{http://arxiv.org/abs/arXiv:0811.3567}.%
+%%CITATION = ARXIV:0811.3567;%%
+
+\bibitem{MVW13}%
+P. Martinetti, P. Vitale, J.-C. Wallet, %
+``\emph{Noncommutative gauge theories on $\mathbb{R}^2_\theta$ as matrix models}'', % 
+\href{http://dx.doi.org/10.1007/JHEP09(2013)051}{J. High Energy Phys. \textbf{2013.9}, 1--26 (2013)}, %
+\arxiv{1303.7185}{hep-th}{http://arxiv.org/abs/1303.7185}.%
+%%CITATION = ARXIV:1303.7185;%%
+
+\bibitem{GWW}%
+A. de Goursac, J.-C. Wallet, R. Wulkenhaar, %
+``\emph{Noncommutative induced gauge theory}'', %
+\href{http://dx.doi.org/10.1140/epjc/s10052-007-0335-2}{Eur. Phys. J. C\textbf{51}, 977--987 (2007)}, %
+\arxiv{0703075}{hep-th}{http://arxiv.org/abs/hep-th/0703075}.%
+%%CITATION = HEP-TH/0703075;%%
+
+\bibitem{GWW2}%
+A. de Goursac, J.-C. Wallet, R. Wulkenhaar, %
+``\emph{On the vacuum states for noncommutative gauge theory}'', %
+\href{http://dx.doi.org/10.1140/epjc/s10052-008-0652-0}{Eur. Phys. J. C\textbf{56}, 293--304 (2008)}, %
+\arxiv{0803.3035}{hep-th}{http://arxiv.org/abs/arXiv:0803.3035}.%
+%%CITATION = ARXIV:0803.3035;%%
+
+\bibitem{GW07}%
+H. Grosse, M. Wohlgenannt, %
+``\emph{Induced gauge theory on a noncommutative space}'', %
+\href{http://dx.doi.org/10.1088/1742-6596/103/1/012008}{J. Phys. Conf. Ser. \textbf{103.1}, 012008 (2008)}, % 
+\arxiv{0804.1259v1}{hep-th}{http://arxiv.org/abs/0804.1259v1}.%
+%%CITATION = HEP-TH/0703169;%%
+
+\bibitem{LSZ}%
+E. Langmann, R.J. Szabo and K. Zarembo, %
+``\emph{Exact Solution of Quantum Field Theory on Noncommutative Phase Spaces}'', %
+\href{http://dx.doi.org/10.1088/1126-6708/2004/01/017}{J. High Energy Phys. \textbf{2004.01}, 017 (2004)}, %
+\arxiv{0308043v1}{hep-th}{http://arxiv.org/abs/hep-th/0308043v1}.%
+%%CITATION = HEP-TH/0308043;%%
+
+\bibitem{integ1-rev}%
+!!!!!!!! For a review, see blablabla !!!!!!!!%
+
+\end{thebibliography}
+
+%============================================================================%
+\end{document}
+%============================================================================%
